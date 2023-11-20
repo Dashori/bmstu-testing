@@ -1,6 +1,6 @@
 module backend
 
-go 1.21
+go 1.18
 
 require (
 	github.com/charmbracelet/log v0.3.0
