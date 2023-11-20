@@ -18,14 +18,8 @@ backend-module-build-job:
   stage: pre
   when: always
   script:
-      - cd backend 
-      - go mod init backend
-      - go mod tidy
-  artifacts:
-    paths:
-      - backend/go.sum
-      - backend/go.mod
-    expire_in: 1 hour
+    - cd backend 
+    - go mod download
   
   
 linter-backend-job:
@@ -34,7 +28,6 @@ linter-backend-job:
   image: golangci/golangci-lint:v1.52.2
   script:
     - cd backend
-    - go mod tidy
     - golangci-lint run --timeout 3m0s
   needs:
     - backend-module-build-job
@@ -44,14 +37,8 @@ console-module-build-job:
   stage: pre 
   when: always
   script:
-      - cd consoleApp 
-      - go mod init consoleApp
-      - go mod tidy
-  artifacts:
-    paths:
-      - consoleApp/go.sum
-      - consoleApp/go.mod
-    expire_in: 1 hour
+    - cd consoleApp 
+    - go mod download
 
 linter-console-job:
   stage: pre
@@ -59,7 +46,6 @@ linter-console-job:
   image: golangci/golangci-lint:v1.52.2
   script:
     - cd consoleApp
-    - go mod tidy
     - golangci-lint run --timeout 3m0s
   needs:
     - console-module-build-job
@@ -70,7 +56,6 @@ bl-unit-test-job:
   when: always
   script:
     - cd backend 
-    - go mod tidy
     - cd internal/services/implementation
     - go test client_test.go client.go -v -cover -coverprofile=client.out
     - go test record.go record_test.go -v -cover -coverprofile=record.out
@@ -92,7 +77,6 @@ db-unit-test-job:
   when: always
   script:
     - cd backend 
-    - go mod tidy
     - cd internal/services/implementation
     - go test -v -cover -coverprofile=DB.out
   artifacts:
@@ -109,7 +93,7 @@ bl-db-test-job:
   when: always
   script:
     - cd backend 
-    - go mod tidy
+    - go mod download
     - cd internal/services/implementation
     - go test recordPostgres_test.go record.go record_test.go petPostgres_test.go pet.go pet_test.go setup.go -v -cover -coverprofile=DBDL.out
   artifacts:
@@ -127,7 +111,7 @@ backend-build-job:
   when: always
   script:
     - cd backend 
-    - go mod tidy
+    - go mod download
     - cd cmd
     - go build main.go
   artifacts:
@@ -145,7 +129,7 @@ console-build-job:
   when: always
   script:
     - cd consoleApp 
-    - go mod tidy
+    - go mod download
     - go build main.go
   artifacts:
     paths:
