@@ -56,6 +56,7 @@ bl-unit-test-job:
   when: always
   script:
     - cd backend 
+    - go mod download
     - cd internal/services/implementation
     - go test client_test.go client.go -v -cover -coverprofile=client.out
     - go test record.go record_test.go -v -cover -coverprofile=record.out
@@ -77,6 +78,7 @@ db-unit-test-job:
   when: always
   script:
     - cd backend 
+    - go mod download
     - cd internal/services/implementation
     - go test -v -cover -coverprofile=DB.out
   artifacts:
