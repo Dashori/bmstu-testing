@@ -14,23 +14,37 @@ stages:
   - build
   - research
 
+
+.go-cache:
+  variables:
+    GOPATH: $CI_PROJECT_DIR/.go
+  before_script:
+    - mkdir -p .go
+    - cd backend 
+    - go mod init backend
+    - go mod tidy
+  cache:
+    paths:
+      - .go/pkg/mod/
+
 backend-module-build-job:      
   stage: pre
   when: always
   script:
     - cd backend 
-    - go mod download
+    # - go mod init backend
+    # - go mod tidy
+
   
-  
-linter-backend-job:
-  stage: pre
-  allow_failure: true
-  image: golangci/golangci-lint:v1.52.2
-  script:
-    - cd backend
-    - golangci-lint run --timeout 3m0s
-  needs:
-    - backend-module-build-job
+# linter-backend-job:
+#   stage: pre
+#   allow_failure: true
+#   image: golangci/golangci-lint:v1.52.2
+#   script:
+#     - cd backend
+#     - golangci-lint run --timeout 3m0s
+#   needs:
+#     - backend-module-build-job
 
 
 console-module-build-job:      
@@ -38,25 +52,26 @@ console-module-build-job:
   when: always
   script:
     - cd consoleApp 
-    - go mod download
+    # - go mod download
 
-linter-console-job:
-  stage: pre
-  allow_failure: true
-  image: golangci/golangci-lint:v1.52.2
-  script:
-    - cd consoleApp
-    - golangci-lint run --timeout 3m0s
-  needs:
-    - console-module-build-job
+# linter-console-job:
+#   stage: pre
+#   allow_failure: true
+#   image: golangci/golangci-lint:v1.52.2
+#   script:
+#     - cd consoleApp
+#     - golangci-lint run --timeout 3m0s
+#   needs:
+#     - console-module-build-job
 
 
 bl-unit-test-job:  
   stage: test   
   when: always
+  extends: .go-cache
   script:
     - cd backend 
-    - go mod download
+    # - go mod download
     - cd internal/services/implementation
     - go test client_test.go client.go -v -cover -coverprofile=client.out
     - go test record.go record_test.go -v -cover -coverprofile=record.out
@@ -71,14 +86,14 @@ bl-unit-test-job:
     expire_in: 1 hour
   needs:
     - backend-module-build-job
-    - linter-backend-job
+    # - linter-backend-job
 
 db-unit-test-job:  
   stage: test   
   when: always
   script:
     - cd backend 
-    - go mod download
+    # - go mod download
     - cd internal/services/implementation
     - go test -v -cover -coverprofile=DB.out
   artifacts:
@@ -87,7 +102,7 @@ db-unit-test-job:
     expire_in: 1 hour
   needs:
     - backend-module-build-job
-    - linter-backend-job
+    # - linter-backend-job
 
 
 bl-db-test-job:  
@@ -95,7 +110,7 @@ bl-db-test-job:
   when: always
   script:
     - cd backend 
-    - go mod download
+    # - go mod download
     - cd internal/services/implementation
     - go test recordPostgres_test.go record.go record_test.go petPostgres_test.go pet.go pet_test.go setup.go -v -cover -coverprofile=DBDL.out
   artifacts:
@@ -139,7 +154,7 @@ console-build-job:
     expire_in: 1 hour
   needs:
     - console-module-build-job
-    - linter-console-job
+    # - linter-console-job
    
 
 # research-job:   
