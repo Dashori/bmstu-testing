@@ -16,16 +16,16 @@ stages:
 
 
 .go-cache:
-  variables:
-    GOPATH: $CI_PROJECT_DIR/.go
+  # variables:
+  #   GOPATH: $CI_PROJECT_DIR/.go
   before_script:
-    - mkdir -p .go
+    - mkdir -p /go
     - cd backend 
     - go mod init backend
     - go mod tidy
   cache:
     paths:
-      - .go/pkg/mod/
+      - /go/pkg/mod/
 
 backend-module-build-job:      
   stage: pre
