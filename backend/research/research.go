@@ -120,8 +120,8 @@ func researchCreateRecordWithTrigger(count int) (int, int, error) {
 	var successCount int64
 
 	// for i := 0; i < N; i++ {
-	for successCount != N{
-	
+	for successCount != N {
+
 		var doctorId = uint64(rand.Intn(30) + 1) // [0,n)
 		var month = time.Month(rand.Intn(12) + 1)
 		var day = rand.Intn(28) + 1
@@ -196,7 +196,7 @@ func researchCreateRecordWithoutTrigger(count int) (int, int, error) {
 
 	for successCount != N {
 
-	// for i := 0; i < N; i++ {
+		// for i := 0; i < N; i++ {
 
 		var doctorId = uint64(rand.Intn(30) + 1)
 		var month = time.Month(rand.Intn(12) + 1)

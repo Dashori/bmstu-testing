@@ -279,8 +279,6 @@ func (r *RecordServiceImplementation) CreateRecordResearch(record *models.Record
 	return nil, duration
 }
 
-
-
 func (r *RecordServiceImplementation) CreateRecordResearchTrigger(record *models.Record) (error, time.Duration) {
 
 	if !CheckTime(record) { // == false

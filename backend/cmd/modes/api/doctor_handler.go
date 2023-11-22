@@ -41,7 +41,7 @@ func (t *services) loginDoctor(c *gin.Context) {
 		jsonInternalServerErrorResponse(c, err)
 		return
 	}
-	
+
 	err = t.Services.DoctorService.SetRole()
 	if err != nil {
 		jsonInternalServerErrorResponse(c, err)
@@ -142,7 +142,6 @@ func (t *services) doctorShedule(c *gin.Context) {
 		jsonInternalServerErrorResponse(c, err)
 		return
 	}
-
 
 	doctor, err := t.Services.DoctorService.GetDoctorById(user_id)
 	if !errorHandler(c, err) { //!= true {

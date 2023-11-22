@@ -5,7 +5,7 @@ import "time"
 type Record struct {
 	RecordId      uint64
 	PetId         uint64
-	PetName  	  string
+	PetName       string
 	ClientId      uint64
 	ClientLogin   string
 	DoctorId      uint64
