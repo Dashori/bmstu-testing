@@ -53,12 +53,14 @@ var testPetCreateSuccess = []struct {
 			pet   *models.Pet
 			login string
 		}{pet: &models.Pet{PetId: 1, Name: "Havrosha", ClientId: 1}, login: "Chepigo"},
+
 		Prepare: func(fields *petServiceFields) {
 			fields.clientRepositoryMock.EXPECT().GetClientByLogin("Chepigo").Return(
 				&models.Client{ClientId: uint64(1)}, nil)
 			fields.petRepositoryMock.EXPECT().GetAllByClient(uint64(1)).Return([]models.Pet{}, nil)
 			fields.petRepositoryMock.EXPECT().Create(&models.Pet{PetId: 1, Name: "Havrosha", ClientId: 1})
 		},
+
 		CheckOutput: func(t *testing.T, err error) {
 			require.NoError(t, err)
 		},
@@ -115,6 +117,7 @@ var testPetCreateFailure = []struct {
 			fields.petRepositoryMock.EXPECT().GetAllByClient(uint64(1)).Return(
 				[]models.Pet{{PetId: 1, Name: "Havrosha", ClientId: 1}}, nil)
 		},
+
 		CheckOutput: func(t *testing.T, err error) {
 			require.ErrorIs(t, err, serviceErrors.PetAlreadyExists)
 		},

@@ -53,7 +53,7 @@ func SetupTestDatabase() (testcontainers.Container, *sql.DB) {
 	}
 	db.SetMaxOpenConns(10)
 
-	text, err := os.ReadFile("../../../db/postgreSQL/init.sql")
+	text, err := os.ReadFile("../../../db/postgreSQL/init/init.sql")
 	if err != nil {
 		return dbContainer, nil
 	}
