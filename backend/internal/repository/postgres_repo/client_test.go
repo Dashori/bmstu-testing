@@ -39,7 +39,7 @@ var testClientPostgresRepositoryCreateFailure = []struct {
 		TestName: "create failure test",
 		InputData: struct {
 			client *models.Client
-		}{&models.Client{Login: "ChicagoTest", Password: "12345"}},
+		}{&models.Client{Login: "ChicagoTest2", Password: "12345"}},
 
 		CheckOutputHelp: func(t *testing.T, err error) {
 			require.NoError(t, err)
@@ -67,10 +67,7 @@ func TestClientPostgresRepositoryCreate(t *testing.T) {
 
 			clientRepository := CreateClientPostgresRepository(&fields)
 
-			err := clientRepository.SetRole()
-			tt.CheckOutput(t, err)
-
-			err = clientRepository.Create(tt.InputData.client)
+			err := clientRepository.Create(tt.InputData.client)
 			tt.CheckOutput(t, err)
 		})
 	}
@@ -83,10 +80,7 @@ func TestClientPostgresRepositoryCreate(t *testing.T) {
 
 			clientRepository := CreateClientPostgresRepository(&fields)
 
-			err := clientRepository.SetRole()
-			tt.CheckOutputHelp(t, err)
-
-			err = clientRepository.Create(tt.InputData.client)
+			err := clientRepository.Create(tt.InputData.client)
 			tt.CheckOutputHelp(t, err)
 
 			err = clientRepository.Create(tt.InputData.client)

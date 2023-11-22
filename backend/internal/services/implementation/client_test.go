@@ -37,7 +37,7 @@ func createClientService(fields *clientServiceFields) services.ClientService {
 }
 
 //-------------------------------------------------------------------------------------------------
-// create
+// create client
 
 var testClientCreateSuccess = []struct {
 	TestName  string
@@ -65,6 +65,7 @@ var testClientCreateSuccess = []struct {
 			fields.clientRepositoryMock.EXPECT().GetClientByLogin("Chepigo").
 				Return(&models.Client{Login: "Chepigo", Password: "12345_hash"}, nil)
 		},
+
 		CheckOutput: func(t *testing.T, err error) {
 			require.NoError(t, err)
 		},
@@ -91,6 +92,7 @@ var testClientCreateFailure = []struct {
 			fields.clientRepositoryMock.EXPECT().GetClientByLogin("Chepigo").
 				Return(nil, repoErrors.ErrorGetClientByLogin)
 		},
+
 		CheckOutput: func(t *testing.T, err error) {
 			require.ErrorIs(t, err, repoErrors.ErrorGetClientByLogin)
 		},
@@ -105,6 +107,7 @@ var testClientCreateFailure = []struct {
 		Prepare: func(fields *clientServiceFields) {
 			fields.clientRepositoryMock.EXPECT().GetClientByLogin("Chepigo").Return(&models.Client{}, nil)
 		},
+
 		CheckOutput: func(t *testing.T, err error) {
 			require.ErrorIs(t, err, serviceErrors.ClientAlreadyExists)
 		},
@@ -122,6 +125,7 @@ var testClientCreateFailure = []struct {
 
 			fields.hasherMock.EXPECT().GetHash("12345").Return(nil, serviceErrors.ErrorHash)
 		},
+
 		CheckOutput: func(t *testing.T, err error) {
 			require.ErrorIs(t, err, serviceErrors.ErrorHash)
 		},
@@ -140,8 +144,8 @@ var testClientCreateFailure = []struct {
 			fields.hasherMock.EXPECT().GetHash("12345").Return([]byte("12345_hash"), nil)
 			fields.clientRepositoryMock.EXPECT().Create(&models.Client{Login: "Chepigo", Password: "12345_hash"}).
 				Return(dbErrors.ErrorInsert)
-
 		},
+
 		CheckOutput: func(t *testing.T, err error) {
 			require.ErrorIs(t, err, dbErrors.ErrorInsert)
 		},
@@ -217,6 +221,7 @@ var testClientLoginSuccess = []struct {
 				Password: "12345"}, nil)
 			fields.hasherMock.EXPECT().CheckUnhashedValue("12345", "12345").Return(true)
 		},
+
 		CheckOutput: func(t *testing.T, err error) {
 			require.NoError(t, err)
 		},

@@ -87,6 +87,7 @@ var testDoctorCreateFailure = []struct {
 		Prepare: func(fields *doctorServiceFields) {
 			fields.doctorRepositoryMock.EXPECT().GetDoctorByLogin("Chepigo").Return(nil, repoErrors.ErrorGetDoctorByLogin)
 		},
+
 		CheckOutput: func(t *testing.T, err error) {
 			require.ErrorIs(t, err, repoErrors.ErrorGetDoctorByLogin)
 		},
@@ -101,6 +102,7 @@ var testDoctorCreateFailure = []struct {
 		Prepare: func(fields *doctorServiceFields) {
 			fields.doctorRepositoryMock.EXPECT().GetDoctorByLogin("Chepigo").Return(&models.Doctor{}, nil)
 		},
+
 		CheckOutput: func(t *testing.T, err error) {
 			require.ErrorIs(t, err, serviceErrors.DoctorAlreadyExists)
 		},
@@ -116,6 +118,7 @@ var testDoctorCreateFailure = []struct {
 			fields.doctorRepositoryMock.EXPECT().GetDoctorByLogin("Chepigo").Return(nil, repoErrors.EntityDoesNotExists)
 			fields.hasherMock.EXPECT().GetHash("12345").Return(nil, serviceErrors.ErrorHash)
 		},
+
 		CheckOutput: func(t *testing.T, err error) {
 			require.ErrorIs(t, err, serviceErrors.ErrorHash)
 		},

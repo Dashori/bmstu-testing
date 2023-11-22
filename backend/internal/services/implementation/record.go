@@ -126,7 +126,7 @@ func (r *RecordServiceImplementation) CreateRecord(record *models.Record) error 
 		return err
 	}
 
-	if !isClientPetOwner(pets, record.PetId) { //== false
+	if !isClientPetOwner(pets, record.PetId) {
 		r.logger.Warn("RECORD! Client is not the pet owner", "client", record.ClientId, "pet", record.PetId)
 		return serviceErrors.NotClientPet
 	}
@@ -137,7 +137,7 @@ func (r *RecordServiceImplementation) CreateRecord(record *models.Record) error 
 		return serviceErrors.DoctorDoesNotExists
 	}
 
-	if !CheckDoctorTime(doctor, record) { //== false
+	if !CheckDoctorTime(doctor, record) {
 		r.logger.Warn("RECORD! Error doctor time for new record", "doctorId", doctor.DoctorId)
 		return serviceErrors.ErrorDoctorTime
 	}
@@ -148,7 +148,7 @@ func (r *RecordServiceImplementation) CreateRecord(record *models.Record) error 
 		return err
 	}
 
-	if !CheckOtherRecords(records, record) { //== false
+	if !CheckOtherRecords(records, record) {
 		r.logger.Warn("RECORD! Error, other record has same time")
 		return serviceErrors.TimeIsTaken
 	}
@@ -234,7 +234,7 @@ func (r *RecordServiceImplementation) GetAllRecords(doctorId uint64, clientId ui
 
 func (r *RecordServiceImplementation) CreateRecordResearch(record *models.Record) (error, time.Duration) {
 
-	if !CheckTime(record) { // == false
+	if !CheckTime(record) {
 
 		return serviceErrors.ErrorCreateRecordTime, 0
 	}
@@ -244,7 +244,7 @@ func (r *RecordServiceImplementation) CreateRecordResearch(record *models.Record
 		return err, 0
 	}
 
-	if !isClientPetOwner(pets, record.PetId) { //== false
+	if !isClientPetOwner(pets, record.PetId) {
 		return serviceErrors.NotClientPet, 0
 	}
 
@@ -255,7 +255,7 @@ func (r *RecordServiceImplementation) CreateRecordResearch(record *models.Record
 		return serviceErrors.DoctorDoesNotExists, 0
 	}
 
-	if !CheckDoctorTime(doctor, record) { //== false
+	if !CheckDoctorTime(doctor, record) {
 		return serviceErrors.ErrorDoctorTime, 0
 	}
 
@@ -264,7 +264,7 @@ func (r *RecordServiceImplementation) CreateRecordResearch(record *models.Record
 		return err, 0
 	}
 
-	if !CheckOtherRecords(records, record) { //== false
+	if !CheckOtherRecords(records, record) {
 		return serviceErrors.TimeIsTaken, 0
 	}
 
@@ -281,7 +281,7 @@ func (r *RecordServiceImplementation) CreateRecordResearch(record *models.Record
 
 func (r *RecordServiceImplementation) CreateRecordResearchTrigger(record *models.Record) (error, time.Duration) {
 
-	if !CheckTime(record) { // == false
+	if !CheckTime(record) {
 
 		return serviceErrors.ErrorCreateRecordTime, 0
 	}
@@ -291,7 +291,7 @@ func (r *RecordServiceImplementation) CreateRecordResearchTrigger(record *models
 		return err, 0
 	}
 
-	if !isClientPetOwner(pets, record.PetId) { //== false
+	if !isClientPetOwner(pets, record.PetId) {
 		return serviceErrors.NotClientPet, 0
 	}
 

@@ -17,7 +17,7 @@ const (
 
 func SetupTestDatabase() (testcontainers.Container, *sql.DB) {
 	containerReq := testcontainers.ContainerRequest{
-		Image:        "postgres:latest",
+		Image:        "postgres:16",
 		ExposedPorts: []string{"5432/tcp"},
 		WaitingFor:   wait.ForListeningPort("5432/tcp"),
 		Env: map[string]string{
@@ -49,7 +49,7 @@ func SetupTestDatabase() (testcontainers.Container, *sql.DB) {
 	}
 	db.SetMaxOpenConns(10)
 
-	text, err := os.ReadFile("../../../db/postgreSQL/init.sql")
+	text, err := os.ReadFile("../../../db/postgreSQL/init/init.sql")
 	if err != nil {
 		return dbContainer, nil
 	}

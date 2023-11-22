@@ -3,14 +3,13 @@ package servicesImplementation
 import (
 	"backend/internal/repository"
 	"backend/internal/repository/postgres_repo"
+	"backend/internal/services"
 	"context"
 	"database/sql"
 	"fmt"
+	"github.com/charmbracelet/log"
 	"github.com/testcontainers/testcontainers-go"
 	"github.com/testcontainers/testcontainers-go/wait"
-	// "database/sql"
-	"backend/internal/services"
-	"github.com/charmbracelet/log"
 	"os"
 )
 
