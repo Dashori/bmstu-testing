@@ -19,7 +19,6 @@ type PetPostgres struct {
 	ClientId uint64 `db:"id_client"`
 }
 
-
 type PetPostgresRepository struct {
 	db *sqlx.DB
 }
