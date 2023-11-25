@@ -67,6 +67,12 @@ func CreatePetPostgresRepository(fields *PostgresRepositoryFields) repository.Pe
 	return NewPetPostgresRepository(dbx)
 }
 
+func CreatePetMockPostgresRepository(dbTest *sqlx.DB) repository.PetRepository {
+	// dbx := sqlx.NewDb(fields.DB, "pgx")
+
+	return NewPetPostgresRepository(dbTest)
+}
+
 func CreateRecordPostgresRepository(fields *PostgresRepositoryFields) repository.RecordRepository {
 	dbx := sqlx.NewDb(fields.DB, "pgx")
 

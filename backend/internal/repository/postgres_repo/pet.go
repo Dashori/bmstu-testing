@@ -19,6 +19,7 @@ type PetPostgres struct {
 	ClientId uint64 `db:"id_client"`
 }
 
+
 type PetPostgresRepository struct {
 	db *sqlx.DB
 }
@@ -28,7 +29,7 @@ func NewPetPostgresRepository(db *sqlx.DB) repository.PetRepository {
 }
 
 func (p *PetPostgresRepository) Create(pet *models.Pet) error {
-	query := `insert into pets(name, type, age, health, id_client)
+	query := `insert into pets(name, type, age, health, id_client) 
 	values ($1, $2, $3, $4, $5);`
 
 	_, err := p.db.Exec(query, pet.Name, pet.Type, pet.Age, pet.Health, pet.ClientId)

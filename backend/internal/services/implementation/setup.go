@@ -3,7 +3,7 @@ package servicesImplementation
 import (
 	"backend/internal/repository"
 	"backend/internal/repository/postgres_repo"
-	"backend/internal/services"
+	// "backend/internal/services"
 	"context"
 	"database/sql"
 	"fmt"
@@ -98,7 +98,7 @@ type RecordServiceFieldsPostgres struct {
 	logger           *log.Logger
 }
 
-func CreateRecordServicePostgres(fields *RecordServiceFieldsPostgres) services.RecordService {
-	return NewRecordServiceImplementation(*fields.RecordRepository, *fields.DoctorRepository,
-		*fields.ClientRepository, *fields.PetRepository, fields.logger)
-}
+// func CreateRecordServicePostgres(fields *RecordServiceFieldsPostgres) services.RecordService {
+// 	return NewRecordServiceImplementation(*fields.RecordRepository, *fields.DoctorRepository,
+// 		*fields.ClientRepository, *fields.PetRepository, fields.logger)
+// }
