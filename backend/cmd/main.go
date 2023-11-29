@@ -10,7 +10,7 @@ import (
 func main() {
 	app := registry.App{}
 
-	err := app.Config.ParseConfig("config.json", "../config")
+	err := app.Config.ParseConfig("config.json", "config")
 	if err != nil {
 		log.Fatal(err)
 	}

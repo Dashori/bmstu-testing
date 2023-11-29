@@ -2,6 +2,7 @@ package servicesImplementation
 
 import (
 	"backend/internal/models"
+	"backend/internal/repository"
 	"backend/internal/repository/postgres_repo"
 	"github.com/charmbracelet/log"
 	"github.com/jmoiron/sqlx"
@@ -10,6 +11,12 @@ import (
 	"os"
 	"testing"
 )
+
+type petServiceFieldsPostgres struct {
+	petRepository    *repository.PetRepository
+	clientRepository *repository.ClientRepository
+	logger           *log.Logger
+}
 
 func createPetServiceFieldsPostgres2(dbTest *sqlx.DB) *petServiceFieldsPostgres {
 	fields := new(petServiceFieldsPostgres)
