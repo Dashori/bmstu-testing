@@ -2,6 +2,7 @@ package servicesImplementation
 
 import (
 	"backend/internal/repository"
+	mock_repository "backend/internal/repository/mocks"
 	"backend/internal/repository/postgres_repo"
 	"backend/internal/services"
 	"context"
@@ -10,7 +11,6 @@ import (
 	"github.com/charmbracelet/log"
 	"github.com/testcontainers/testcontainers-go"
 	"github.com/testcontainers/testcontainers-go/wait"
-	mock_repository "backend/internal/repository/mocks"
 	"os"
 )
 
@@ -19,7 +19,6 @@ const (
 	PASSWORD = "parasha"
 	DBNAME   = "postgres"
 )
-
 
 func SetupTestDatabase() (testcontainers.Container, *sql.DB) {
 	containerReq := testcontainers.ContainerRequest{
@@ -107,7 +106,6 @@ func СreateRecordServiceFieldsPostgres(dbTest *sql.DB) *RecordServiceFieldsPost
 
 	return fields
 }
-
 
 func CreateRecordServicePostgres(fields *RecordServiceFieldsPostgres) services.RecordService {
 	return NewRecordServiceImplementation(*fields.RecordRepository, *fields.DoctorRepository,
