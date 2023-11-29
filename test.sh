@@ -22,3 +22,7 @@ mv backend/internal/repository/postgres_repo/report.html reportRepos.html
 
 # go test recordPostgres_test.go record.go setup.go -gcflags=all=-l -tags=integration -cover -coverprofile=serviceTest.out -json  > testIntegration.log
 go test petPostgres_test.go recordPostgres_test.go pet.go record.go setup.go  -gcflags=all=-l -tags=integration -cover -coverprofile=serviceIntegration.out -json  > testIntegration.log
+
+go test pet_test.go client_test.go doctor_test.go record_test.go pet.go record.go client.go doctor.go setup.go
+
+go test petPostgres_test.go recordPostgres_test.go pet.go record.go setup.go  -gcflags=all=-l -tags=integration -cover -coverprofile=serviceIntegration.out -json  > testIntegration.log
