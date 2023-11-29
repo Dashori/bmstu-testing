@@ -15,14 +15,6 @@ import (
 	"time"
 )
 
-type recordServiceFields struct {
-	recordRepositoryMock *mock_repository.MockRecordRepository
-	doctorRepositoryMock *mock_repository.MockDoctorRepository
-	clientRepositoryMock *mock_repository.MockClientRepository
-	petRepositoryMock    *mock_repository.MockPetRepository
-	logger               *log.Logger
-}
-
 func createRecordServiceFields(controller *gomock.Controller) *recordServiceFields {
 	fields := new(recordServiceFields)
 

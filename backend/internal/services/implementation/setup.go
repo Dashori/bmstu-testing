@@ -3,13 +3,14 @@ package servicesImplementation
 import (
 	"backend/internal/repository"
 	"backend/internal/repository/postgres_repo"
-	// "backend/internal/services"
+	"backend/internal/services"
 	"context"
 	"database/sql"
 	"fmt"
 	"github.com/charmbracelet/log"
 	"github.com/testcontainers/testcontainers-go"
 	"github.com/testcontainers/testcontainers-go/wait"
+	mock_repository "backend/internal/repository/mocks"
 	"os"
 )
 
@@ -18,6 +19,7 @@ const (
 	PASSWORD = "parasha"
 	DBNAME   = "postgres"
 )
+
 
 func SetupTestDatabase() (testcontainers.Container, *sql.DB) {
 	containerReq := testcontainers.ContainerRequest{
@@ -67,6 +69,22 @@ func SetupTestDatabase() (testcontainers.Container, *sql.DB) {
 	return dbContainer, db
 }
 
+type recordServiceFields struct {
+	recordRepositoryMock *mock_repository.MockRecordRepository
+	doctorRepositoryMock *mock_repository.MockDoctorRepository
+	clientRepositoryMock *mock_repository.MockClientRepository
+	petRepositoryMock    *mock_repository.MockPetRepository
+	logger               *log.Logger
+}
+
+type RecordServiceFieldsPostgres struct {
+	RecordRepository *repository.RecordRepository
+	DoctorRepository *repository.DoctorRepository
+	ClientRepository *repository.ClientRepository
+	PetRepository    *repository.PetRepository
+	logger           *log.Logger
+}
+
 func СreateRecordServiceFieldsPostgres(dbTest *sql.DB) *RecordServiceFieldsPostgres {
 	fields := new(RecordServiceFieldsPostgres)
 
@@ -90,15 +108,8 @@ func СreateRecordServiceFieldsPostgres(dbTest *sql.DB) *RecordServiceFieldsPost
 	return fields
 }
 
-type RecordServiceFieldsPostgres struct {
-	RecordRepository *repository.RecordRepository
-	DoctorRepository *repository.DoctorRepository
-	ClientRepository *repository.ClientRepository
-	PetRepository    *repository.PetRepository
-	logger           *log.Logger
-}
 
-// func CreateRecordServicePostgres(fields *RecordServiceFieldsPostgres) services.RecordService {
-// 	return NewRecordServiceImplementation(*fields.RecordRepository, *fields.DoctorRepository,
-// 		*fields.ClientRepository, *fields.PetRepository, fields.logger)
-// }
+func CreateRecordServicePostgres(fields *RecordServiceFieldsPostgres) services.RecordService {
+	return NewRecordServiceImplementation(*fields.RecordRepository, *fields.DoctorRepository,
+		*fields.ClientRepository, *fields.PetRepository, fields.logger)
+}

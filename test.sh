@@ -19,3 +19,6 @@ mv backend/internal/repository/postgres_repo/report.html reportRepos.html
 
 # go tool cover -html=serviceTest.out
 # go tool cover -html=repoTest.out
+
+# go test recordPostgres_test.go record.go setup.go -gcflags=all=-l -tags=integration -cover -coverprofile=serviceTest.out -json  > testIntegration.log
+go test petPostgres_test.go recordPostgres_test.go pet.go record.go setup.go  -gcflags=all=-l -tags=integration -cover -coverprofile=serviceIntegration.out -json  > testIntegration.log
