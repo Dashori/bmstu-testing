@@ -228,36 +228,6 @@ var testClientLoginSuccess = []struct {
 	},
 }
 
-var testClientLoginSuccessWithoutMock = []struct {
-	TestName  string
-	InputData struct {
-		login    string
-		password string
-	}
-	Prepare     func(fields *clientServiceFields)
-	CheckOutput func(t *testing.T, err error)
-}{
-	{
-		TestName: "simple login",
-		InputData: struct {
-			login    string
-			password string
-		}{login: "Chepigo", password: "12345"},
-
-		Prepare: func(fields *clientServiceFields) {
-			fields.clientRepositoryMock.EXPECT().GetClientByLogin("Chepigo").Return(&models.Client{
-				ClientId: 1,
-				Login:    "Chepigo",
-				Password: "12345"}, nil)
-			fields.hasherMock.EXPECT().CheckUnhashedValue("12345", "12345").Return(true)
-		},
-
-		CheckOutput: func(t *testing.T, err error) {
-			require.NoError(t, err)
-		},
-	},
-}
-
 var testClientLoginFailure = []struct {
 	TestName  string
 	InputData struct {

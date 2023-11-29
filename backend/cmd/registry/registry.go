@@ -2,7 +2,7 @@ package registry
 
 import (
 	config "backend/config"
-	"backend/internal/pkg/hasher/implementation"
+	hasherImplementation "backend/internal/pkg/hasher/implementation"
 	"backend/internal/repository"
 	postgres_repo "backend/internal/repository/postgres_repo"
 	"backend/internal/services"
