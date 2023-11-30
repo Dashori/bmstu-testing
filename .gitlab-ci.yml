@@ -14,16 +14,6 @@ stages:
   - report
 #   - build
 #   - research
-
-
-e2e-tests:
-  stage: test
-  script:
-    - docker-compose up -d
-    - docker ps
-    - cd e2e
-    - go run main.go
-    - docker-compose down
     
 unit-tests:
     stage: test
@@ -50,6 +40,17 @@ int-tests:
     artifacts:
       paths:
         - backend/internal/services/implementation/testIntegration.log
+
+e2e-tests:
+  stage: test
+  script:
+    - docker-compose up -d
+    - docker ps
+    - cd e2e
+    - go run main.go
+    - docker-compose down
+  needs:
+    - int-tests
 
 report:
     stage: report
