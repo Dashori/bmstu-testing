@@ -35,6 +35,8 @@ int-tests:
       - cd backend/internal/services/implementation 
       - go test petPostgres_test.go recordPostgres_test.go pet.go record.go setup.go  -gcflags=all=-l -tags=integration -cover -coverprofile=serviceIntegration.out -json -v > testIntegration.log  
       - echo "all is ok"
+    needs:
+      - unit-tests
     artifacts:
       paths:
         - backend/internal/services/implementation/testIntegration.log
