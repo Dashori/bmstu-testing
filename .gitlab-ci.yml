@@ -15,6 +15,15 @@ stages:
 #   - build
 #   - research
 
+
+e2e-tests:
+  stage: test
+  script:
+    - docker-compose up -d
+    - cd e2e
+    - go run main.go
+    - docker-compose down
+    
 unit-tests:
     stage: test
     script:
