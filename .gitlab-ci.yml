@@ -9,11 +9,8 @@ services:
   - docker:dind
 
 stages:
-#   - pre
   - test
   - report
-#   - build
-#   - research
     
 unit-tests:
     stage: test
@@ -59,12 +56,17 @@ report:
       - int-tests
     script:
       - go install github.com/polnaya-katuxa/test-report@latest
+      - mv backend/internal/services/implementation/testService.log testService.log
+      - mv  backend/internal/repository/postgres_repo/testRepos.log testRepos.log
       - mv backend/internal/services/implementation/testIntegration.log testIntegration.log
-      - test-report -f ./testIntegration.log -o .
-      - mv report.html reportIntegration.html
+      - touch test.log
+      - cat testService.log >> test.log
+      - cat testRepos.log >> test.log
+      - cat testIntegration.log >> test.log
+      - test-report -f ./test.log -o .
     artifacts:
       paths:
-        - reportIntegration.html
+        - report.html
 # backend-module-build-job:      
 #   stage: pre
 #   when: always
