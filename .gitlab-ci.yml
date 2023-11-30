@@ -11,6 +11,7 @@ services:
 stages:
 #   - pre
   - test
+  - report
 #   - build
 #   - research
 
@@ -19,12 +20,30 @@ unit-tests:
     script:
       - cd backend/internal/services/implementation
       - go test pet_test.go client_test.go doctor_test.go record_test.go pet.go record.go client.go doctor.go setup.go -gcflags=all=-l -tags=unit -cover -coverprofile=serviceTest.out -json > testService.log
+      - cd -
+      - cd backend/internal/repository/postgres_repo
+      - go test -gcflags=all=-l -tags=unit -cover -coverprofile=serviceTest.out -json ./... > testRepos.log    
     artifacts:
       paths:
         - backend/internal/services/implementation/testService.log
-#       - backend/go.mod
-#     expire_in: 1 hour
+        - backend/internal/repository/postgres_repo/testRepos.log
 
+int-tests:
+    stage: test
+    script:
+      - cd backend/internal/services/implementation 
+      - go test petPostgres_test.go recordPostgres_test.go pet.go record.go setup.go  -gcflags=all=-l -tags=integration -cover -coverprofile=serviceIntegration.out -json  > testIntegration.log  
+    artifacts:
+      paths:
+        - backend/internal/services/implementation/testIntegration.log
+
+report:
+    stage: report
+    dependencies:
+      - unit-tests
+      - int-tests
+    script:
+      - go install github.com/polnaya-katuxa/test-report@latest
 
 # backend-module-build-job:      
 #   stage: pre
