@@ -20,6 +20,7 @@ e2e-tests:
   stage: test
   script:
     - docker-compose up -d
+    - docker ps
     - cd e2e
     - go run main.go
     - docker-compose down
