@@ -10,3 +10,8 @@ type ClientRepository interface {
 	GetAllClient() ([]models.Client, error)
 	Delete(id uint64) error
 }
+
+type ClientRepositoryGorm interface {
+	Create(client *models.Client) error
+	GetClientByLogin(login string) (*models.Client, error)
+}
