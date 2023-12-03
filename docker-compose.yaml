@@ -1,0 +1,46 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: postgres_db
+    ports: 
+      - 5432:5432
+    volumes:
+      - ./backend/db/postgreSQL/data:/var/lib/postgresql/data
+      - ./backend/db/postgreSQL/init:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d postgres -U dashori"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    environment:
+        POSTGRES_HOST: "postgres"
+        POSTGRES_PORT: 5432
+        POSTGRES_USER: "dashori"
+        POSTGRES_PASSWORD: "parasha"
+        POSTGRES_DB: "postgres"
+        PGDATA: "/var/lib/postgresql/data/pgdata"
+    networks:
+      - mynetwork
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    image: test-backend
+    container_name: test-backend
+    command: go run ./cmd/main.go
+    ports: 
+      - 8080:8080
+    depends_on:
+      postgres:
+        condition: service_healthy 
+    networks:
+      - mynetwork
+  
+
+networks:
+  mynetwork:
+    driver: bridge
+

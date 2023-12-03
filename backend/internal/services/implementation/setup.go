@@ -2,8 +2,9 @@ package servicesImplementation
 
 import (
 	"backend/internal/repository"
+	mock_repository "backend/internal/repository/mocks"
 	"backend/internal/repository/postgres_repo"
-	// "backend/internal/services"
+	"backend/internal/services"
 	"context"
 	"database/sql"
 	"fmt"
@@ -67,6 +68,22 @@ func SetupTestDatabase() (testcontainers.Container, *sql.DB) {
 	return dbContainer, db
 }
 
+type recordServiceFields struct {
+	recordRepositoryMock *mock_repository.MockRecordRepository
+	doctorRepositoryMock *mock_repository.MockDoctorRepository
+	clientRepositoryMock *mock_repository.MockClientRepository
+	petRepositoryMock    *mock_repository.MockPetRepository
+	logger               *log.Logger
+}
+
+type RecordServiceFieldsPostgres struct {
+	RecordRepository *repository.RecordRepository
+	DoctorRepository *repository.DoctorRepository
+	ClientRepository *repository.ClientRepository
+	PetRepository    *repository.PetRepository
+	logger           *log.Logger
+}
+
 func СreateRecordServiceFieldsPostgres(dbTest *sql.DB) *RecordServiceFieldsPostgres {
 	fields := new(RecordServiceFieldsPostgres)
 
@@ -90,15 +107,7 @@ func СreateRecordServiceFieldsPostgres(dbTest *sql.DB) *RecordServiceFieldsPost
 	return fields
 }
 
-type RecordServiceFieldsPostgres struct {
-	RecordRepository *repository.RecordRepository
-	DoctorRepository *repository.DoctorRepository
-	ClientRepository *repository.ClientRepository
-	PetRepository    *repository.PetRepository
-	logger           *log.Logger
+func CreateRecordServicePostgres(fields *RecordServiceFieldsPostgres) services.RecordService {
+	return NewRecordServiceImplementation(*fields.RecordRepository, *fields.DoctorRepository,
+		*fields.ClientRepository, *fields.PetRepository, fields.logger)
 }
-
-// func CreateRecordServicePostgres(fields *RecordServiceFieldsPostgres) services.RecordService {
-// 	return NewRecordServiceImplementation(*fields.RecordRepository, *fields.DoctorRepository,
-// 		*fields.ClientRepository, *fields.PetRepository, fields.logger)
-// }
