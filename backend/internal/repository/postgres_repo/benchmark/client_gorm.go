@@ -30,13 +30,13 @@ func randomString(n int) string {
 }
 
 func benchAddClient(repo repository.ClientRepositoryGorm, n int) func(b *testing.B) {
-	fmt.Println("!")
+	// fmt.Println("!")
 	return func(b *testing.B) {
 		b.N = n
 		for i := 0; i < b.N; i++ {
 			rand.Seed(time.Now().UnixNano())
 			login := randomString(7)
-			fmt.Println(login)
+			// fmt.Println(login)
 			err := repo.Create(&models.Client{Login: login, Password: "12345"})
 			if err != nil {
 				panic(err)
@@ -64,7 +64,7 @@ func benchAddClientSqlx(repo repository.ClientRepository, n int) func(b *testing
 		for i := 0; i < b.N; i++ {
 			rand.Seed(time.Now().UnixNano())
 			login := randomString(7)
-			fmt.Println(login)
+			// fmt.Println(login)
 			err := repo.Create(&models.Client{Login: login, Password: "12345"})
 			if err != nil {
 				panic(err)
@@ -85,15 +85,19 @@ func benchGetClientSqlx(repo repository.ClientRepository, n int) func(b *testing
 	}
 }
 
-func ClientBench() {
-	dbContainer, db, _ := SetupTestDatabaseGorm()
+func ClientBench() []string {
+	dbContainer, db, err := SetupTestDatabaseGorm()
 	defer func(dbContainer testcontainers.Container, ctx context.Context) {
 		err := dbContainer.Terminate(ctx)
 		if err != nil {
 			return
 		}
 	}(dbContainer, context.Background())
-	fmt.Println("statr!")
+	// fmt.Println("statr!")
+	if err != nil {
+		fmt.Println(err)
+		return nil
+	}
 
 	fields := PostgresRepositoryFieldsGorm{DB: db}
 
@@ -103,7 +107,7 @@ func ClientBench() {
 
 	addClient := benchAddClient(clientRepository, 1000)
 	resultsAddUser := testing.Benchmark(addClient)
-	fmt.Println("statr5")
+	// fmt.Println("statr5")
 
 	getClient := benchGetClient(clientRepository, 1000)
 	resultsGetUser := testing.Benchmark(getClient)
@@ -131,7 +135,7 @@ func ClientBench() {
 
 	addClient = benchAddClientSqlx(clientRepository2, 1000)
 	resultsAddUser = testing.Benchmark(addClient)
-	fmt.Println("statr5")
+	// fmt.Println("statr5")
 
 	getClient = benchGetClientSqlx(clientRepository2, 1000)
 	resultsGetUser = testing.Benchmark(getClient)
@@ -143,7 +147,7 @@ func ClientBench() {
 		resultsGetUser.N, resultsGetUser.NsPerOp(), resultsGetUser.AllocsPerOp(), resultsGetUser.AllocedBytesPerOp()))
 
 	fmt.Println(res)
-	// return res
+	return res
 }
 
 const (
@@ -171,28 +175,29 @@ func SetupTestDatabaseGorm() (testcontainers.Container, *gorm.DB, error) {
 			Started:          true,
 		})
 
-	host, _ := dbContainer.Host(context.Background())
+	host, err := dbContainer.Host(context.Background())
+	// fmt.Println(host, err)
 	port, _ := dbContainer.MappedPort(context.Background(), "5432")
 
 	dsn := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable", host, port.Int(), USER, PASSWORD, DBNAME)
 	pureDB, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
-		fmt.Println("1, ", err)
+		// fmt.Println("1, ", err)
 		return nil, nil, fmt.Errorf("gorm open: %w", err)
 	}
 
-	text, err := os.ReadFile("../db/postgreSQL/init/init.sql")
+	text, err := os.ReadFile("../../db/postgreSQL/init/init.sql")
 	if err != nil {
-		fmt.Println("3, ", err)
+		// fmt.Println("3, ", err)
 		return nil, nil, fmt.Errorf("read file: %w", err)
 	}
 
 	if err := pureDB.Exec(string(text)).Error; err != nil {
-		fmt.Println("4, ", err)
+		// fmt.Println("4, ", err)
 		return nil, nil, fmt.Errorf("exec: %w", err)
 	}
 
-	fmt.Println("All is ok!")
+	// fmt.Println("All is ok!")
 	return dbContainer, pureDB, nil
 }
 
@@ -230,7 +235,8 @@ func SetupTestDatabaseSqlx() (testcontainers.Container, *sql.DB) {
 	}
 	db.SetMaxOpenConns(10)
 
-	text, err := os.ReadFile("../db/postgreSQL/init/init.sql")
+	// text, err := os.ReadFile("db/postgreSQL/init/init.sql")
+	text, err := os.ReadFile("../../db/postgreSQL/init/init.sql")
 	if err != nil {
 		return dbContainer, nil
 	}

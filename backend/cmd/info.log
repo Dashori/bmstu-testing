@@ -1,0 +1,308 @@
+2023/11/22 22:24:51 <registry/registry.go:98> 
+
+2023/11/22 22:24:51 INFO <registry/registry.go:99> Success initialization of new Logger!
+2023/11/22 22:24:51 INFO <flags/postrgres.go:40> POSTGRES! Successfully init postgreSQL
+2023/11/22 22:24:51 INFO <postgres_repo/createPostgres.go:31> POSTGRES! Successfully create postgres repository fields
+2023/11/22 22:24:51 INFO <registry/registry.go:43> Success initialization of repositories
+2023/11/22 22:24:51 INFO <registry/registry.go:59> Success initialization of services
+2023/11/22 22:24:51 INFO <cmd/main.go:31> Start with api!
+2023/11/22 22:25:14 WARN <implementation/client.go:91> CLIENT! Error, client with this login does not exists login=dashori error="Repository error! Такой сущности нет в базе данных!"
+2023/11/22 22:25:26 INFO <implementation/client.go:82> CLIENT! Successfully create client login=dashori id=1
+2023/11/22 22:25:28 INFO <implementation/record.go:230> RECORD! Success GetAllRecords with clientId=1 doctorId=0
+2023/11/22 22:25:29 INFO <implementation/pet.go:116> PET! Successfully repository method GetAllByClient clientId=1
+2023/11/22 22:25:31 INFO <implementation/doctor.go:156> DOCTOR! Successsully repository method GetAllDoctors
+2023/11/23 00:31:12 <registry/registry.go:98> 
+
+2023/11/23 00:31:12 INFO <registry/registry.go:99> Success initialization of new Logger!
+2023/11/23 00:31:12 FATA <flags/postrgres.go:34> POSTGRES! Error in method ping
+2023/11/23 00:32:12 <registry/registry.go:98> 
+
+2023/11/23 00:32:12 INFO <registry/registry.go:99> Success initialization of new Logger!
+2023/11/23 00:32:12 INFO <flags/postrgres.go:40> POSTGRES! Successfully init postgreSQL
+2023/11/23 00:32:12 INFO <postgres_repo/createPostgres.go:31> POSTGRES! Successfully create postgres repository fields
+2023/11/23 00:32:12 INFO <registry/registry.go:43> Success initialization of repositories
+2023/11/23 00:32:12 INFO <registry/registry.go:59> Success initialization of services
+2023/11/23 00:32:12 INFO <cmd/main.go:31> Start with api!
+2023/11/23 21:03:55 <registry/registry.go:98> 
+
+2023/11/23 21:03:55 INFO <registry/registry.go:99> Success initialization of new Logger!
+2023/11/23 21:03:55 FATA <flags/postrgres.go:34> POSTGRES! Error in method ping
+2023/11/23 21:50:29 <registry/registry.go:98> 
+
+2023/11/23 21:50:29 INFO <registry/registry.go:99> Success initialization of new Logger!
+2023/11/23 21:50:29 FATA <flags/postrgres.go:34> POSTGRES! Error in method ping
+2023/11/28 16:21:58 <registry/registry.go:98> 
+
+2023/11/28 16:21:58 INFO <registry/registry.go:99> Success initialization of new Logger!
+2023/11/28 16:21:58 FATA <flags/postrgres.go:34> POSTGRES! Error in method ping
+2023/11/28 18:05:33 <registry/registry.go:98> 
+
+2023/11/28 18:05:33 INFO <registry/registry.go:99> Success initialization of new Logger!
+2023/11/28 18:05:33 INFO <flags/postrgres.go:40> POSTGRES! Successfully init postgreSQL
+2023/11/28 18:05:33 INFO <postgres_repo/createPostgres.go:31> POSTGRES! Successfully create postgres repository fields
+2023/11/28 18:05:33 INFO <registry/registry.go:43> Success initialization of repositories
+2023/11/28 18:05:33 INFO <registry/registry.go:59> Success initialization of services
+2023/11/28 18:05:33 INFO <cmd/main.go:31> Start with api!
+2023/11/29 22:19:02 <registry/registry.go:98> 
+
+2023/11/29 22:19:02 INFO <registry/registry.go:99> Success initialization of new Logger!
+2023/11/29 22:19:02 FATA <flags/postrgres.go:34> POSTGRES! Error in method ping
+2023/11/29 22:19:11 <registry/registry.go:98> 
+
+2023/11/29 22:19:11 INFO <registry/registry.go:99> Success initialization of new Logger!
+2023/11/29 22:19:11 INFO <flags/postrgres.go:40> POSTGRES! Successfully init postgreSQL
+2023/11/29 22:19:11 INFO <postgres_repo/createPostgres.go:31> POSTGRES! Successfully create postgres repository fields
+2023/11/29 22:19:11 INFO <registry/registry.go:43> Success initialization of repositories
+2023/11/29 22:19:11 INFO <registry/registry.go:59> Success initialization of services
+2023/11/29 22:19:11 INFO <cmd/main.go:31> Start with api!
+2023/11/29 22:19:26 <registry/registry.go:98> 
+
+2023/11/29 22:19:26 INFO <registry/registry.go:99> Success initialization of new Logger!
+2023/11/29 22:19:26 INFO <flags/postrgres.go:40> POSTGRES! Successfully init postgreSQL
+2023/11/29 22:19:26 INFO <postgres_repo/createPostgres.go:31> POSTGRES! Successfully create postgres repository fields
+2023/11/29 22:19:26 INFO <registry/registry.go:43> Success initialization of repositories
+2023/11/29 22:19:26 INFO <registry/registry.go:59> Success initialization of services
+2023/11/29 22:19:26 INFO <cmd/main.go:31> Start with api!
+2023/12/03 22:10:01 <registry/registry.go:98> 
+
+2023/12/03 22:10:01 INFO <registry/registry.go:99> Success initialization of new Logger!
+2023/12/03 22:10:01 FATA <flags/postrgres.go:34> POSTGRES! Error in method ping
+2023/12/03 22:10:17 <registry/registry.go:98> 
+
+2023/12/03 22:10:17 INFO <registry/registry.go:99> Success initialization of new Logger!
+2023/12/03 22:10:17 FATA <flags/postrgres.go:34> POSTGRES! Error in method ping
+2023/12/03 22:10:20 <registry/registry.go:98> 
+
+2023/12/03 22:10:20 INFO <registry/registry.go:99> Success initialization of new Logger!
+2023/12/03 22:10:20 FATA <flags/postrgres.go:34> POSTGRES! Error in method ping
+2023/12/03 22:10:28 <registry/registry.go:98> 
+
+2023/12/03 22:10:28 INFO <registry/registry.go:99> Success initialization of new Logger!
+2023/12/03 22:10:28 INFO <flags/postrgres.go:40> POSTGRES! Successfully init postgreSQL
+2023/12/03 22:10:28 INFO <postgres_repo/createPostgres.go:31> POSTGRES! Successfully create postgres repository fields
+2023/12/03 22:10:28 INFO <registry/registry.go:43> Success initialization of repositories
+2023/12/03 22:10:28 INFO <registry/registry.go:59> Success initialization of services
+2023/12/03 22:11:04 <registry/registry.go:98> 
+
+2023/12/03 22:11:04 INFO <registry/registry.go:99> Success initialization of new Logger!
+2023/12/03 22:11:04 INFO <flags/postrgres.go:40> POSTGRES! Successfully init postgreSQL
+2023/12/03 22:11:04 INFO <postgres_repo/createPostgres.go:31> POSTGRES! Successfully create postgres repository fields
+2023/12/03 22:11:04 INFO <registry/registry.go:43> Success initialization of repositories
+2023/12/03 22:11:04 INFO <registry/registry.go:59> Success initialization of services
+2023/12/03 22:12:13 <registry/registry.go:98> 
+
+2023/12/03 22:12:13 INFO <registry/registry.go:99> Success initialization of new Logger!
+2023/12/03 22:12:13 INFO <flags/postrgres.go:40> POSTGRES! Successfully init postgreSQL
+2023/12/03 22:12:13 INFO <postgres_repo/createPostgres.go:31> POSTGRES! Successfully create postgres repository fields
+2023/12/03 22:12:13 INFO <registry/registry.go:43> Success initialization of repositories
+2023/12/03 22:12:13 INFO <registry/registry.go:59> Success initialization of services
+2023/12/03 22:12:51 <registry/registry.go:98> 
+
+2023/12/03 22:12:51 INFO <registry/registry.go:99> Success initialization of new Logger!
+2023/12/03 22:12:51 INFO <flags/postrgres.go:40> POSTGRES! Successfully init postgreSQL
+2023/12/03 22:12:51 INFO <postgres_repo/createPostgres.go:31> POSTGRES! Successfully create postgres repository fields
+2023/12/03 22:12:51 INFO <registry/registry.go:43> Success initialization of repositories
+2023/12/03 22:12:51 INFO <registry/registry.go:59> Success initialization of services
+2023/12/03 22:14:46 <registry/registry.go:98> 
+
+2023/12/03 22:14:46 INFO <registry/registry.go:99> Success initialization of new Logger!
+2023/12/03 22:14:46 INFO <flags/postrgres.go:40> POSTGRES! Successfully init postgreSQL
+2023/12/03 22:14:46 INFO <postgres_repo/createPostgres.go:31> POSTGRES! Successfully create postgres repository fields
+2023/12/03 22:14:46 INFO <registry/registry.go:43> Success initialization of repositories
+2023/12/03 22:14:46 INFO <registry/registry.go:59> Success initialization of services
+2023/12/03 22:15:02 <registry/registry.go:98> 
+
+2023/12/03 22:15:02 INFO <registry/registry.go:99> Success initialization of new Logger!
+2023/12/03 22:15:02 INFO <flags/postrgres.go:40> POSTGRES! Successfully init postgreSQL
+2023/12/03 22:15:02 INFO <postgres_repo/createPostgres.go:31> POSTGRES! Successfully create postgres repository fields
+2023/12/03 22:15:02 INFO <registry/registry.go:43> Success initialization of repositories
+2023/12/03 22:15:02 INFO <registry/registry.go:59> Success initialization of services
+2023/12/04 12:10:34 <registry/registry.go:98> 
+
+2023/12/04 12:10:34 INFO <registry/registry.go:99> Success initialization of new Logger!
+2023/12/04 12:10:34 INFO <flags/postrgres.go:40> POSTGRES! Successfully init postgreSQL
+2023/12/04 12:10:34 INFO <postgres_repo/createPostgres.go:31> POSTGRES! Successfully create postgres repository fields
+2023/12/04 12:10:34 INFO <registry/registry.go:43> Success initialization of repositories
+2023/12/04 12:10:34 INFO <registry/registry.go:59> Success initialization of services
+2023/12/04 12:10:55 <registry/registry.go:98> 
+
+2023/12/04 12:10:55 INFO <registry/registry.go:99> Success initialization of new Logger!
+2023/12/04 12:10:55 INFO <flags/postrgres.go:40> POSTGRES! Successfully init postgreSQL
+2023/12/04 12:10:55 INFO <postgres_repo/createPostgres.go:31> POSTGRES! Successfully create postgres repository fields
+2023/12/04 12:10:55 INFO <registry/registry.go:43> Success initialization of repositories
+2023/12/04 12:10:55 INFO <registry/registry.go:59> Success initialization of services
+2023/12/04 12:12:11 <registry/registry.go:98> 
+
+2023/12/04 12:12:11 INFO <registry/registry.go:99> Success initialization of new Logger!
+2023/12/04 12:12:11 INFO <flags/postrgres.go:40> POSTGRES! Successfully init postgreSQL
+2023/12/04 12:12:11 INFO <postgres_repo/createPostgres.go:31> POSTGRES! Successfully create postgres repository fields
+2023/12/04 12:12:11 INFO <registry/registry.go:43> Success initialization of repositories
+2023/12/04 12:12:11 INFO <registry/registry.go:59> Success initialization of services
+2023/12/04 12:15:01 <registry/registry.go:98> 
+
+2023/12/04 12:15:01 INFO <registry/registry.go:99> Success initialization of new Logger!
+2023/12/04 12:15:01 INFO <flags/postrgres.go:40> POSTGRES! Successfully init postgreSQL
+2023/12/04 12:15:01 INFO <postgres_repo/createPostgres.go:31> POSTGRES! Successfully create postgres repository fields
+2023/12/04 12:15:01 INFO <registry/registry.go:43> Success initialization of repositories
+2023/12/04 12:15:01 INFO <registry/registry.go:59> Success initialization of services
+2023/12/04 12:15:12 <registry/registry.go:98> 
+
+2023/12/04 12:15:12 INFO <registry/registry.go:99> Success initialization of new Logger!
+2023/12/04 12:15:12 INFO <flags/postrgres.go:40> POSTGRES! Successfully init postgreSQL
+2023/12/04 12:15:12 INFO <postgres_repo/createPostgres.go:31> POSTGRES! Successfully create postgres repository fields
+2023/12/04 12:15:12 INFO <registry/registry.go:43> Success initialization of repositories
+2023/12/04 12:15:12 INFO <registry/registry.go:59> Success initialization of services
+2023/12/04 12:15:28 <registry/registry.go:98> 
+
+2023/12/04 12:15:28 INFO <registry/registry.go:99> Success initialization of new Logger!
+2023/12/04 12:15:28 INFO <flags/postrgres.go:40> POSTGRES! Successfully init postgreSQL
+2023/12/04 12:15:28 INFO <postgres_repo/createPostgres.go:31> POSTGRES! Successfully create postgres repository fields
+2023/12/04 12:15:28 INFO <registry/registry.go:43> Success initialization of repositories
+2023/12/04 12:15:28 INFO <registry/registry.go:59> Success initialization of services
+2023/12/04 12:15:59 <registry/registry.go:98> 
+
+2023/12/04 12:15:59 INFO <registry/registry.go:99> Success initialization of new Logger!
+2023/12/04 12:15:59 INFO <flags/postrgres.go:40> POSTGRES! Successfully init postgreSQL
+2023/12/04 12:15:59 INFO <postgres_repo/createPostgres.go:31> POSTGRES! Successfully create postgres repository fields
+2023/12/04 12:15:59 INFO <registry/registry.go:43> Success initialization of repositories
+2023/12/04 12:15:59 INFO <registry/registry.go:59> Success initialization of services
+2023/12/04 12:16:17 <registry/registry.go:98> 
+
+2023/12/04 12:16:17 INFO <registry/registry.go:99> Success initialization of new Logger!
+2023/12/04 12:16:17 INFO <flags/postrgres.go:40> POSTGRES! Successfully init postgreSQL
+2023/12/04 12:16:17 INFO <postgres_repo/createPostgres.go:31> POSTGRES! Successfully create postgres repository fields
+2023/12/04 12:16:17 INFO <registry/registry.go:43> Success initialization of repositories
+2023/12/04 12:16:17 INFO <registry/registry.go:59> Success initialization of services
+2023/12/04 12:16:30 <registry/registry.go:98> 
+
+2023/12/04 12:16:30 INFO <registry/registry.go:99> Success initialization of new Logger!
+2023/12/04 12:16:30 INFO <flags/postrgres.go:40> POSTGRES! Successfully init postgreSQL
+2023/12/04 12:16:30 INFO <postgres_repo/createPostgres.go:31> POSTGRES! Successfully create postgres repository fields
+2023/12/04 12:16:30 INFO <registry/registry.go:43> Success initialization of repositories
+2023/12/04 12:16:30 INFO <registry/registry.go:59> Success initialization of services
+2023/12/04 12:19:05 <registry/registry.go:98> 
+
+2023/12/04 12:19:05 INFO <registry/registry.go:99> Success initialization of new Logger!
+2023/12/04 12:19:05 INFO <flags/postrgres.go:40> POSTGRES! Successfully init postgreSQL
+2023/12/04 12:19:05 INFO <postgres_repo/createPostgres.go:31> POSTGRES! Successfully create postgres repository fields
+2023/12/04 12:19:05 INFO <registry/registry.go:43> Success initialization of repositories
+2023/12/04 12:19:05 INFO <registry/registry.go:59> Success initialization of services
+2023/12/04 12:21:01 <registry/registry.go:98> 
+
+2023/12/04 12:21:01 INFO <registry/registry.go:99> Success initialization of new Logger!
+2023/12/04 12:21:01 INFO <flags/postrgres.go:40> POSTGRES! Successfully init postgreSQL
+2023/12/04 12:21:01 INFO <postgres_repo/createPostgres.go:31> POSTGRES! Successfully create postgres repository fields
+2023/12/04 12:21:01 INFO <registry/registry.go:43> Success initialization of repositories
+2023/12/04 12:21:01 INFO <registry/registry.go:59> Success initialization of services
+2023/12/04 12:21:28 <registry/registry.go:98> 
+
+2023/12/04 12:21:28 INFO <registry/registry.go:99> Success initialization of new Logger!
+2023/12/04 12:21:28 INFO <flags/postrgres.go:40> POSTGRES! Successfully init postgreSQL
+2023/12/04 12:21:28 INFO <postgres_repo/createPostgres.go:31> POSTGRES! Successfully create postgres repository fields
+2023/12/04 12:21:28 INFO <registry/registry.go:43> Success initialization of repositories
+2023/12/04 12:21:28 INFO <registry/registry.go:59> Success initialization of services
+2023/12/04 12:21:40 <registry/registry.go:98> 
+
+2023/12/04 12:21:40 INFO <registry/registry.go:99> Success initialization of new Logger!
+2023/12/04 12:21:40 INFO <flags/postrgres.go:40> POSTGRES! Successfully init postgreSQL
+2023/12/04 12:21:40 INFO <postgres_repo/createPostgres.go:31> POSTGRES! Successfully create postgres repository fields
+2023/12/04 12:21:40 INFO <registry/registry.go:43> Success initialization of repositories
+2023/12/04 12:21:40 INFO <registry/registry.go:59> Success initialization of services
+2023/12/04 12:24:12 <registry/registry.go:98> 
+
+2023/12/04 12:24:12 INFO <registry/registry.go:99> Success initialization of new Logger!
+2023/12/04 12:24:12 INFO <flags/postrgres.go:40> POSTGRES! Successfully init postgreSQL
+2023/12/04 12:24:12 INFO <postgres_repo/createPostgres.go:31> POSTGRES! Successfully create postgres repository fields
+2023/12/04 12:24:12 INFO <registry/registry.go:43> Success initialization of repositories
+2023/12/04 12:24:12 INFO <registry/registry.go:59> Success initialization of services
+2023/12/04 12:25:12 <registry/registry.go:98> 
+
+2023/12/04 12:25:12 INFO <registry/registry.go:99> Success initialization of new Logger!
+2023/12/04 12:25:12 INFO <flags/postrgres.go:40> POSTGRES! Successfully init postgreSQL
+2023/12/04 12:25:12 INFO <postgres_repo/createPostgres.go:31> POSTGRES! Successfully create postgres repository fields
+2023/12/04 12:25:12 INFO <registry/registry.go:43> Success initialization of repositories
+2023/12/04 12:25:12 INFO <registry/registry.go:59> Success initialization of services
+2023/12/04 12:25:35 <registry/registry.go:98> 
+
+2023/12/04 12:25:35 INFO <registry/registry.go:99> Success initialization of new Logger!
+2023/12/04 12:25:35 INFO <flags/postrgres.go:40> POSTGRES! Successfully init postgreSQL
+2023/12/04 12:25:35 INFO <postgres_repo/createPostgres.go:31> POSTGRES! Successfully create postgres repository fields
+2023/12/04 12:25:35 INFO <registry/registry.go:43> Success initialization of repositories
+2023/12/04 12:25:35 INFO <registry/registry.go:59> Success initialization of services
+2023/12/04 12:29:19 <registry/registry.go:98> 
+
+2023/12/04 12:29:19 INFO <registry/registry.go:99> Success initialization of new Logger!
+2023/12/04 12:29:19 INFO <flags/postrgres.go:40> POSTGRES! Successfully init postgreSQL
+2023/12/04 12:29:19 INFO <postgres_repo/createPostgres.go:31> POSTGRES! Successfully create postgres repository fields
+2023/12/04 12:29:19 INFO <registry/registry.go:43> Success initialization of repositories
+2023/12/04 12:29:19 INFO <registry/registry.go:59> Success initialization of services
+2023/12/04 12:29:41 <registry/registry.go:98> 
+
+2023/12/04 12:29:41 INFO <registry/registry.go:99> Success initialization of new Logger!
+2023/12/04 12:29:41 INFO <flags/postrgres.go:40> POSTGRES! Successfully init postgreSQL
+2023/12/04 12:29:41 INFO <postgres_repo/createPostgres.go:31> POSTGRES! Successfully create postgres repository fields
+2023/12/04 12:29:41 INFO <registry/registry.go:43> Success initialization of repositories
+2023/12/04 12:29:41 INFO <registry/registry.go:59> Success initialization of services
+2023/12/04 12:30:40 <registry/registry.go:98> 
+
+2023/12/04 12:30:40 INFO <registry/registry.go:99> Success initialization of new Logger!
+2023/12/04 12:30:40 INFO <flags/postrgres.go:40> POSTGRES! Successfully init postgreSQL
+2023/12/04 12:30:40 INFO <postgres_repo/createPostgres.go:31> POSTGRES! Successfully create postgres repository fields
+2023/12/04 12:30:40 INFO <registry/registry.go:43> Success initialization of repositories
+2023/12/04 12:30:40 INFO <registry/registry.go:59> Success initialization of services
+2023/12/04 12:30:53 <registry/registry.go:98> 
+
+2023/12/04 12:30:53 INFO <registry/registry.go:99> Success initialization of new Logger!
+2023/12/04 12:30:53 INFO <flags/postrgres.go:40> POSTGRES! Successfully init postgreSQL
+2023/12/04 12:30:53 INFO <postgres_repo/createPostgres.go:31> POSTGRES! Successfully create postgres repository fields
+2023/12/04 12:30:53 INFO <registry/registry.go:43> Success initialization of repositories
+2023/12/04 12:30:53 INFO <registry/registry.go:59> Success initialization of services
+2023/12/04 12:31:34 <registry/registry.go:98> 
+
+2023/12/04 12:31:34 INFO <registry/registry.go:99> Success initialization of new Logger!
+2023/12/04 12:31:34 INFO <flags/postrgres.go:40> POSTGRES! Successfully init postgreSQL
+2023/12/04 12:31:34 INFO <postgres_repo/createPostgres.go:31> POSTGRES! Successfully create postgres repository fields
+2023/12/04 12:31:34 INFO <registry/registry.go:43> Success initialization of repositories
+2023/12/04 12:31:34 INFO <registry/registry.go:59> Success initialization of services
+2023/12/04 12:31:49 <registry/registry.go:98> 
+
+2023/12/04 12:31:49 INFO <registry/registry.go:99> Success initialization of new Logger!
+2023/12/04 12:31:49 INFO <flags/postrgres.go:40> POSTGRES! Successfully init postgreSQL
+2023/12/04 12:31:49 INFO <postgres_repo/createPostgres.go:31> POSTGRES! Successfully create postgres repository fields
+2023/12/04 12:31:49 INFO <registry/registry.go:43> Success initialization of repositories
+2023/12/04 12:31:49 INFO <registry/registry.go:59> Success initialization of services
+2023/12/04 12:32:03 <registry/registry.go:98> 
+
+2023/12/04 12:32:03 INFO <registry/registry.go:99> Success initialization of new Logger!
+2023/12/04 12:32:03 INFO <flags/postrgres.go:40> POSTGRES! Successfully init postgreSQL
+2023/12/04 12:32:03 INFO <postgres_repo/createPostgres.go:31> POSTGRES! Successfully create postgres repository fields
+2023/12/04 12:32:03 INFO <registry/registry.go:43> Success initialization of repositories
+2023/12/04 12:32:03 INFO <registry/registry.go:59> Success initialization of services
+2023/12/04 12:40:07 <registry/registry.go:98> 
+
+2023/12/04 12:40:07 INFO <registry/registry.go:99> Success initialization of new Logger!
+2023/12/04 12:40:07 INFO <flags/postrgres.go:40> POSTGRES! Successfully init postgreSQL
+2023/12/04 12:40:07 INFO <postgres_repo/createPostgres.go:31> POSTGRES! Successfully create postgres repository fields
+2023/12/04 12:40:07 INFO <registry/registry.go:43> Success initialization of repositories
+2023/12/04 12:40:07 INFO <registry/registry.go:59> Success initialization of services
+2023/12/04 12:43:26 <registry/registry.go:98> 
+
+2023/12/04 12:43:26 INFO <registry/registry.go:99> Success initialization of new Logger!
+2023/12/04 12:43:26 INFO <flags/postrgres.go:40> POSTGRES! Successfully init postgreSQL
+2023/12/04 12:43:26 INFO <postgres_repo/createPostgres.go:31> POSTGRES! Successfully create postgres repository fields
+2023/12/04 12:43:26 INFO <registry/registry.go:43> Success initialization of repositories
+2023/12/04 12:43:26 INFO <registry/registry.go:59> Success initialization of services
+2023/12/04 12:44:09 <registry/registry.go:98> 
+
+2023/12/04 12:44:09 INFO <registry/registry.go:99> Success initialization of new Logger!
+2023/12/04 12:44:09 INFO <flags/postrgres.go:40> POSTGRES! Successfully init postgreSQL
+2023/12/04 12:44:09 INFO <postgres_repo/createPostgres.go:31> POSTGRES! Successfully create postgres repository fields
+2023/12/04 12:44:09 INFO <registry/registry.go:43> Success initialization of repositories
+2023/12/04 12:44:09 INFO <registry/registry.go:59> Success initialization of services
+2023/12/04 12:54:21 <registry/registry.go:98> 
+
+2023/12/04 12:54:21 INFO <registry/registry.go:99> Success initialization of new Logger!
+2023/12/04 12:54:21 INFO <flags/postrgres.go:40> POSTGRES! Successfully init postgreSQL
+2023/12/04 12:54:21 INFO <postgres_repo/createPostgres.go:31> POSTGRES! Successfully create postgres repository fields
+2023/12/04 12:54:21 INFO <registry/registry.go:43> Success initialization of repositories
+2023/12/04 12:54:21 INFO <registry/registry.go:59> Success initialization of services
