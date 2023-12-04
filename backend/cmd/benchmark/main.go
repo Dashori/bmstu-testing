@@ -31,6 +31,7 @@ func main() {
 	router.GET("/bench", func(ctx *gin.Context) {
 		var res []string
 		for i := 0; i < 2; i++ {
+			fmt.Println("ITERATION ", i)
 			res = benchmark.ClientBench()
 		}
 
