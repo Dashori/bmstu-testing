@@ -145,13 +145,11 @@ func ClientBench() []string {
 	// res = append(res, fmt.Sprintf("sqlx.GetClient -- runs %5d times\tCPU: %5d ns/op\tRAM: %5d allocs/op %5d bytes/op\n",
 	// 	resultsGetUser.N, resultsGetUser.NsPerOp(), resultsGetUser.AllocsPerOp(), resultsGetUser.AllocedBytesPerOp()))
 
-
 	res = append(res, fmt.Sprintf("%5d %5d %5d",
 		resultsAddUser.NsPerOp(), resultsAddUser.AllocsPerOp(), resultsAddUser.AllocedBytesPerOp()))
 
 	res = append(res, fmt.Sprintf("%5d %5d %5d",
 		resultsGetUser.NsPerOp(), resultsGetUser.AllocsPerOp(), resultsGetUser.AllocedBytesPerOp()))
-
 
 	return res
 }
