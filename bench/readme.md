@@ -17,17 +17,17 @@ sqlx.GetClient -- runs  100 times CPU: 2413497 ns/op RAM: 61 allocs/op  2230 byt
 
 Картиночки со сравнением:
 
-![Add Client Alloced Bytes Per Operation](/images/addClientAllocedBytesPerOp.pdf)
-![Add Client Allocs Per Op](/images/addClientAllocsPerOp.pdf)
-![Add Client Ns Per Op](/images/addClientNsPerOp.pdf)
-![Get Client Alloced Bytes Per Op](/images/getClientAllocedBytesPerOp.pdf)
-![Get Client Allocs Per Op](/images/getClientAllocsPerOp.pdf)
-![Get Client Ns Per Op](/images/getClientNsPerOp.pdf)
+![Add Client Alloced Bytes Per Operation](./images/addClientAllocedBytesPerOp.pdf)
+![Add Client Allocs Per Op](./images/addClientAllocsPerOp.pdf)
+![Add Client Ns Per Op](./images/addClientNsPerOp.pdf)
+![Get Client Alloced Bytes Per Op](./images/getClientAllocedBytesPerOp.pdf)
+![Get Client Allocs Per Op](./images/getClientAllocsPerOp.pdf)
+![Get Client Ns Per Op](./images/getClientNsPerOp.pdf)
 
 Картиночки из графаны с ресурсами:
 
-![All](/grafana/all.png)
-![Heap](/grafana/heap.png)
+![All](./grafana/all.png)
+![Heap](./grafana/heap.png)
 
 ### Запуск
 Для запуска нужно выполнить:
