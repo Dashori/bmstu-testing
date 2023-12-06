@@ -8,10 +8,11 @@
 
 Результаты:
 ```
-gorm.AddClient -- runs  100 times\tCPU: 4105089 ns/op\tRAM:    68 allocs/op  5935 bytes/op\n
-gorm.GetClient -- runs  100 times\tCPU: 1054461 ns/op\tRAM:    93 allocs/op  4508 bytes/op\n
-sqlx.AddClient -- runs  100 times\tCPU: 2551028 ns/op\tRAM:    11 allocs/op   401 bytes/op\n
-sqlx.GetClient -- runs  100 times\tCPU: 2413497 ns/op\tRAM:    61 allocs/op  2230 bytes/op\n
+gorm.AddClient -- runs  100 times CPU: 4105089 ns/op RAM: 68 allocs/op  5935 bytes/op
+gorm.GetClient -- runs  100 times CPU: 1054461 ns/op RAM: 93 allocs/op  4508 bytes/op
+
+sqlx.AddClient -- runs  100 times CPU: 2551028 ns/op RAM: 11 allocs/op   401 bytes/op
+sqlx.GetClient -- runs  100 times CPU: 2413497 ns/op RAM: 61 allocs/op  2230 bytes/op
 ```
 
 Картиночки со сравнением:
