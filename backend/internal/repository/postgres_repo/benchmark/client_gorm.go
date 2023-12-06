@@ -107,11 +107,17 @@ func ClientBench() []string {
 	resultsGetUser := testing.Benchmark(getClient)
 
 	var res []string
-	res = append(res, fmt.Sprintf("gorm.AddClient -- runs %5d times\tCPU: %5d ns/op\tRAM: %5d allocs/op %5d bytes/op\n",
-		resultsAddUser.N, resultsAddUser.NsPerOp(), resultsAddUser.AllocsPerOp(), resultsAddUser.AllocedBytesPerOp()))
+	// res = append(res, fmt.Sprintf("gorm.AddClient -- runs %5d times\tCPU: %5d ns/op\tRAM: %5d allocs/op %5d bytes/op\n",
+	// 	resultsAddUser.N, resultsAddUser.NsPerOp(), resultsAddUser.AllocsPerOp(), resultsAddUser.AllocedBytesPerOp()))
 
-	res = append(res, fmt.Sprintf("gorm.GetClient -- runs %5d times\tCPU: %5d ns/op\tRAM: %5d allocs/op %5d bytes/op\n",
-		resultsGetUser.N, resultsGetUser.NsPerOp(), resultsGetUser.AllocsPerOp(), resultsGetUser.AllocedBytesPerOp()))
+	// res = append(res, fmt.Sprintf("gorm.GetClient -- runs %5d times\tCPU: %5d ns/op\tRAM: %5d allocs/op %5d bytes/op\n",
+	// 	resultsGetUser.N, resultsGetUser.NsPerOp(), resultsGetUser.AllocsPerOp(), resultsGetUser.AllocedBytesPerOp()))
+
+	res = append(res, fmt.Sprintf("%5d %5d %5d",
+		resultsAddUser.NsPerOp(), resultsAddUser.AllocsPerOp(), resultsAddUser.AllocedBytesPerOp()))
+
+	res = append(res, fmt.Sprintf("%5d %5d %5d",
+		resultsGetUser.NsPerOp(), resultsGetUser.AllocsPerOp(), resultsGetUser.AllocedBytesPerOp()))
 
 	// ---------- sqlx! -----------
 
@@ -133,13 +139,20 @@ func ClientBench() []string {
 	getClient = benchGetClientSqlx(clientRepository2, 1000)
 	resultsGetUser = testing.Benchmark(getClient)
 
-	res = append(res, fmt.Sprintf("sqlx.AddClient -- runs %5d times\tCPU: %5d ns/op\tRAM: %5d allocs/op %5d bytes/op\n",
-		resultsAddUser.N, resultsAddUser.NsPerOp(), resultsAddUser.AllocsPerOp(), resultsAddUser.AllocedBytesPerOp()))
+	// res = append(res, fmt.Sprintf("sqlx.AddClient -- runs %5d times\tCPU: %5d ns/op\tRAM: %5d allocs/op %5d bytes/op\n",
+	// 	resultsAddUser.N, resultsAddUser.NsPerOp(), resultsAddUser.AllocsPerOp(), resultsAddUser.AllocedBytesPerOp()))
 
-	res = append(res, fmt.Sprintf("sqlx.GetClient -- runs %5d times\tCPU: %5d ns/op\tRAM: %5d allocs/op %5d bytes/op\n",
-		resultsGetUser.N, resultsGetUser.NsPerOp(), resultsGetUser.AllocsPerOp(), resultsGetUser.AllocedBytesPerOp()))
+	// res = append(res, fmt.Sprintf("sqlx.GetClient -- runs %5d times\tCPU: %5d ns/op\tRAM: %5d allocs/op %5d bytes/op\n",
+	// 	resultsGetUser.N, resultsGetUser.NsPerOp(), resultsGetUser.AllocsPerOp(), resultsGetUser.AllocedBytesPerOp()))
 
-	fmt.Println(res)
+
+	res = append(res, fmt.Sprintf("%5d %5d %5d",
+		resultsAddUser.NsPerOp(), resultsAddUser.AllocsPerOp(), resultsAddUser.AllocedBytesPerOp()))
+
+	res = append(res, fmt.Sprintf("%5d %5d %5d",
+		resultsGetUser.NsPerOp(), resultsGetUser.AllocsPerOp(), resultsGetUser.AllocedBytesPerOp()))
+
+
 	return res
 }
 

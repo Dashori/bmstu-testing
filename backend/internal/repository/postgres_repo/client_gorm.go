@@ -29,14 +29,10 @@ func (c *ClientPostgresRepositoryGorm) Create(client *models.Client) error {
 		Password: client.Password,
 	}
 
-	// fmt.Println("------ ok 0 -------")
-
 	res := c.db.Table("clients").Create(clientDB)
 	if res.Error != nil {
 		return fmt.Errorf("insert: %w", res.Error)
 	}
-
-	// fmt.Println("------ ok 1 -------")
 
 	return nil
 }
@@ -45,21 +41,15 @@ func (c *ClientPostgresRepositoryGorm) GetClientByLogin(login string) (*models.C
 	clientDB := &ClientPostgres{}
 
 	res := c.db.Table("clients").Where("login = ?", login).Take(&clientDB)
-	// fmt.Println("------ ok 0 -------")
 	if res.Error != nil {
 		return nil, dbErrors.ErrorSelect
 	}
 
 	clientModels := &models.Client{}
 	err := copier.Copy(clientModels, clientDB)
-	// fmt.Println("------ ok 1 -------")
-
 	if err != nil {
 		return nil, dbErrors.ErrorCopy
 	}
-
-	// fmt.Println("------ ok 2 -------")
-	fmt.Println(clientModels.Login, clientModels.Password, clientModels.ClientId)
 
 	return clientModels, nil
 }
