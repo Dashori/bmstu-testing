@@ -30,7 +30,7 @@ func main() {
 	router.GET("/metrics", prometheusHandler())
 	router.GET("/bench", func(ctx *gin.Context) {
 		var res [][]string
-		for i := 0; i < 100; i++ {
+		for i := 0; i < 10; i++ {
 			fmt.Println("ITERATION ", i)
 			res2 := benchmark.ClientBench()
 			res = append(res, res2)

@@ -4,7 +4,6 @@ import (
 	api "backend/cmd/modes/api"
 	menu "backend/cmd/modes/techUI"
 	"backend/cmd/registry"
-	// benchmark "backend/internal/repository/postgres_repo/benchmark"
 	"log"
 )
 
