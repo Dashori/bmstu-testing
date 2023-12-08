@@ -1,0 +1,82 @@
+version: "3.8"
+
+services:
+  backend-bench:
+    build:
+      context: ./backend
+      dockerfile: Dockerfie2
+    container_name: backend-bench
+    # command: go run ./cmd/benchmark/main.go
+    privileged: true
+    volumes:
+      - /var/run/docker.sock://var/run/docker.sock
+    environment:
+      TZ: "Europe/Moscow"
+      TC_HOST: "host.docker.internal"
+    ports: 
+      - 8081:8081
+    networks:
+      - bench
+  
+  postgres:
+    image: postgres:16
+    container_name: postgres_db
+    ports: 
+      - 5432:5432
+    volumes:
+      - ./backend/db/postgreSQL/data:/var/lib/postgresql/data
+      - ./backend/db/postgreSQL/init:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d postgres -U dashori"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    environment:
+        POSTGRES_HOST: "postgres"
+        POSTGRES_PORT: 5432
+        POSTGRES_USER: "dashori"
+        POSTGRES_PASSWORD: "parasha"
+        POSTGRES_DB: "postgres"
+        PGDATA: "/var/lib/postgresql/data/pgdata"
+    networks:
+      - bench
+
+  prometheus:
+    image: prom/prometheus:v2.48.0
+    volumes:
+      - ./prometheus.yaml:/prometheus.yaml
+    container_name: prometheus-bench
+    hostname: prometheus
+    command:
+      - --config.file=/prometheus.yaml
+    ports:
+      - 9090:9090
+    restart: unless-stopped
+    environment:
+      TZ: "Europe/Moscow"
+    depends_on:
+      - backend-bench
+    networks:
+      - bench  
+  
+  grafana:
+    image: grafana/grafana:10.2.2
+    user: root
+    ports:
+      - 3000:3000
+    volumes:
+      - ./grafana:/var/lib/grafana
+      - ./grafana/provisioning/:/etc/grafana/provisioning/
+    container_name: grafana-bench
+    hostname: grafana
+    restart: unless-stopped
+    environment:
+      TZ: "Europe/Moscow"
+    depends_on:
+      - prometheus
+    networks:
+      - bench
+
+networks:
+  bench:
+    driver: bridge
