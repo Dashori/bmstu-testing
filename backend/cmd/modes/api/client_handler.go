@@ -16,13 +16,8 @@ func (t *services) createClient(c *gin.Context) {
 		return
 	}
 
-	err = t.Services.ClientService.SetRole()
-	if err != nil {
-		jsonInternalServerErrorResponse(c, err)
-		return
-	}
-
-	res, err := t.Services.ClientService.Create(client, client.Password)
+	// res, err := t.Services.ClientService.Create(client, client.Password)
+	res, err := t.Services.ClientService.CreateOTP(client)
 	if !errorHandler(c, err) { //!= true
 		return
 	}
@@ -41,12 +36,6 @@ func (t *services) loginClient(c *gin.Context) {
 	var client *models.Client
 	err := c.ShouldBindJSON(&client)
 
-	if err != nil {
-		jsonInternalServerErrorResponse(c, err)
-		return
-	}
-
-	err = t.Services.ClientService.SetRole()
 	if err != nil {
 		jsonInternalServerErrorResponse(c, err)
 		return
@@ -71,12 +60,6 @@ func (t *services) infoClient(c *gin.Context) {
 
 	user_id, role, err := token.ExtractTokenIdAndRole(c)
 	if !errorHandlerClientAuth(c, err, role) { //!= true
-		return
-	}
-
-	err = t.Services.ClientService.SetRole()
-	if err != nil {
-		jsonInternalServerErrorResponse(c, err)
 		return
 	}
 

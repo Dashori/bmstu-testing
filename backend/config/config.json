@@ -8,7 +8,7 @@
     },
 
     "mode" : "api",
-    "loglevel": "info",
+    "loglevel": "debug",
     "logfile" : "info.log",
     "port": ":8080"
 }

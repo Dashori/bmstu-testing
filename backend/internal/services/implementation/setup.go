@@ -11,7 +11,9 @@ import (
 	"github.com/charmbracelet/log"
 	"github.com/testcontainers/testcontainers-go"
 	"github.com/testcontainers/testcontainers-go/wait"
+	"net/smtp"
 	"os"
+	"time"
 )
 
 const (
@@ -110,4 +112,40 @@ func СreateRecordServiceFieldsPostgres(dbTest *sql.DB) *RecordServiceFieldsPost
 func CreateRecordServicePostgres(fields *RecordServiceFieldsPostgres) services.RecordService {
 	return NewRecordServiceImplementation(*fields.RecordRepository, *fields.DoctorRepository,
 		*fields.ClientRepository, *fields.PetRepository, fields.logger)
+}
+
+func sendEmail(emailTo string, otp string) error {
+
+	from := "dashori@huds.su"
+	password := "vovaaboba"
+
+	smtpHost := "huds.su"
+	smtpPort := "587"
+
+	// Адрес получателя
+	// to := "dashylya@huds.su"
+	//  to := "romanov.alexey2000@gmail.com"
+	//  to := "notkhudyakov@gmail.com"
+	//   to := "daahaaa2.0@gmail.com"
+	// to := "daahaaa@icloud.com"
+
+	auth := smtp.PlainAuth("", from, password, smtpHost)
+
+	msg := "From: " + from +
+		"\r\nTo: " + emailTo +
+		"\r\nDate: " + time.Now().Format("Mon, 02 Jan 2006 15:04:05 -0700") +
+		"\r\nSubject: Код двухфакторной аутентификации\n" +
+		"\r\n\r\nВаш код для входа: " + otp
+
+	fmt.Println(msg)
+
+	// Отправка письма через SMTP
+	err := smtp.SendMail(smtpHost+":"+smtpPort, auth, from, []string{emailTo}, []byte(msg))
+	if err != nil {
+		fmt.Println("Ошибка при отправке письма: ", err)
+		return err
+	}
+	fmt.Println("Письмо успешно отправлено!")
+
+	return nil
 }
