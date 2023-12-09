@@ -6,20 +6,6 @@ type ErrorBody struct {
 	Err string `json:"error"`
 }
 
-type NewShedule struct {
-	Start uint64
-	End   uint64
-}
-
-type Doctors struct {
-	Doctors []struct {
-		DoctorId  uint64 `json:"DoctorId"`
-		Login     string `json:"Login"`
-		StartTime uint64 `json:"StartTime"`
-		EndTime   uint64 `json:"EndTime"`
-	} `json:"doctors"`
-}
-
 type Pets struct {
 	Pets []struct {
 		PetId    uint64 `json:"PetId"`
@@ -47,15 +33,8 @@ type Client struct {
 	Login    string `json:"Login"`
 	Password string
 	Token    string `json:"Token"`
-}
-
-type Doctor struct {
-	DoctorId  uint64 `json:"DoctorId"`
-	Login     string `json:"Login"`
-	Password  string
-	Token     string `json:"Token"`
-	StartTime uint64 `json:"StartTime"`
-	EndTime   uint64 `json:"EndTime"`
+	Email    string `json:"Email"`
+	OTP      string `json:"OTP"`
 }
 
 type Pet struct {
@@ -65,15 +44,4 @@ type Pet struct {
 	Age      uint64 `json:"Age"`
 	Health   uint64 `json:"Health"`
 	ClientId uint64 `json:"ClientId"`
-}
-
-type Record struct {
-	RecordId      uint64
-	PetId         uint64
-	ClientId      uint64
-	DoctorId      uint64
-	Year          int
-	Month         int
-	Day           int
-	DatetimeStart int
 }

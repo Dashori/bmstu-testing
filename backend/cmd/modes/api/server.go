@@ -32,6 +32,7 @@ func SetupServer(a *registry.App) *gin.Engine {
 		doctor.PATCH("/shedule", t.doctorShedule)
 
 		api.POST("/client/create", t.createClient)
+		api.POST("/client/createOTP", t.createClientOTP)
 		api.POST("/client/login", t.loginClient)
 
 		client := api.Group("/client")

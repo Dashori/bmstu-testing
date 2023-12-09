@@ -3,6 +3,7 @@ package api
 import (
 	token "backend/cmd/modes/api/utils"
 	"backend/internal/models"
+	servicesErrors "backend/internal/pkg/errors/servicesErrors"
 	"github.com/gin-gonic/gin"
 	"time"
 )
@@ -16,9 +17,34 @@ func (t *services) createClient(c *gin.Context) {
 		return
 	}
 
-	// res, err := t.Services.ClientService.Create(client, client.Password)
+	res, err := t.Services.ClientService.Create(client, client.Password)
+	if !errorHandler(c, err) { //!= true
+		return
+	}
+
+	token, err := token.GenerateToken(res.ClientId, "client")
+	if err != nil {
+		jsonInternalServerErrorResponse(c, err)
+		return
+	}
+
+	jsonClientCreateResponse(c, res, token)
+}
+
+func (t *services) createClientOTP(c *gin.Context) {
+	var client *models.Client
+	err := c.ShouldBindJSON(&client)
+
+	if err != nil {
+		jsonInternalServerErrorResponse(c, err)
+		return
+	}
+
 	res, err := t.Services.ClientService.CreateOTP(client)
 	if !errorHandler(c, err) { //!= true
+		return
+	}
+	if err == servicesErrors.ErrorNoOTP {
 		return
 	}
 

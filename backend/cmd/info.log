@@ -374,3 +374,273 @@
 2023/12/09 21:26:17 DEBU <implementation/client.go:46> CLIENT! Successfully GetClientByLogin login=dashori6
 2023/12/09 21:26:17 INFO <implementation/client.go:146> CLIENT! Successfully create client login=dashori6 id=532
 2023/12/09 21:26:50 DEBU <implementation/client.go:180> CLIENT! Success repository method GetClientById id=532
+2023/12/09 21:37:31 <registry/registry.go:98> 
+
+2023/12/09 21:37:31 INFO <registry/registry.go:99> Success initialization of new Logger!
+2023/12/09 21:37:31 DEBU <flags/postrgres.go:19> POSTGRES! Start init postgreSQL user=dashori DBName=postgres host=localhost port=5432
+2023/12/09 21:37:31 INFO <flags/postrgres.go:40> POSTGRES! Successfully init postgreSQL
+2023/12/09 21:37:31 INFO <postgres_repo/createPostgres.go:31> POSTGRES! Successfully create postgres repository fields
+2023/12/09 21:37:31 INFO <registry/registry.go:43> Success initialization of repositories
+2023/12/09 21:37:31 INFO <registry/registry.go:59> Success initialization of services
+2023/12/09 21:37:31 INFO <cmd/main.go:31> Start with api!
+2023/12/09 21:37:35 DEBU <implementation/client.go:51> CLIENT! Start create client with login=cOXKzhC
+2023/12/09 21:37:35 DEBU <implementation/client.go:46> CLIENT! Successfully GetClientByLogin login=cOXKzhC
+2023/12/09 21:37:35 INFO <implementation/client.go:82> CLIENT! Successfully create client login=cOXKzhC id=533
+2023/12/09 21:37:35 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=533
+2023/12/09 21:37:35 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=533
+2023/12/09 21:37:35 DEBU <implementation/pet.go:31> PET! Start create new pet client login=cOXKzhC petName=BilnBMD
+2023/12/09 21:37:35 INFO <implementation/pet.go:62> PET! Successfully Create new pet client login=cOXKzhC petName=BilnBMD
+2023/12/09 21:37:35 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=533
+2023/12/09 21:37:35 INFO <implementation/pet.go:116> PET! Successfully repository method GetAllByClient clientId=533
+2023/12/09 21:38:09 DEBU <implementation/client.go:51> CLIENT! Start create client with login=JAKuqxG
+2023/12/09 21:38:09 DEBU <implementation/client.go:46> CLIENT! Successfully GetClientByLogin login=JAKuqxG
+2023/12/09 21:38:09 INFO <implementation/client.go:82> CLIENT! Successfully create client login=JAKuqxG id=534
+2023/12/09 21:38:09 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=534
+2023/12/09 21:38:09 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=534
+2023/12/09 21:38:09 DEBU <implementation/pet.go:31> PET! Start create new pet client login=JAKuqxG petName=qZDuTAK
+2023/12/09 21:38:09 INFO <implementation/pet.go:62> PET! Successfully Create new pet client login=JAKuqxG petName=qZDuTAK
+2023/12/09 21:38:09 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=534
+2023/12/09 21:38:09 INFO <implementation/pet.go:116> PET! Successfully repository method GetAllByClient clientId=534
+2023/12/09 21:38:14 DEBU <implementation/client.go:51> CLIENT! Start create client with login=OylUWus
+2023/12/09 21:38:14 DEBU <implementation/client.go:46> CLIENT! Successfully GetClientByLogin login=OylUWus
+2023/12/09 21:38:14 INFO <implementation/client.go:82> CLIENT! Successfully create client login=OylUWus id=535
+2023/12/09 21:38:14 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=535
+2023/12/09 21:38:14 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=535
+2023/12/09 21:38:14 DEBU <implementation/pet.go:31> PET! Start create new pet client login=OylUWus petName=PyivCPS
+2023/12/09 21:38:14 INFO <implementation/pet.go:62> PET! Successfully Create new pet client login=OylUWus petName=PyivCPS
+2023/12/09 21:38:14 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=535
+2023/12/09 21:38:14 INFO <implementation/pet.go:116> PET! Successfully repository method GetAllByClient clientId=535
+2023/12/09 21:38:37 DEBU <implementation/client.go:51> CLIENT! Start create client with login=WaVxkCA
+2023/12/09 21:38:37 DEBU <implementation/client.go:46> CLIENT! Successfully GetClientByLogin login=WaVxkCA
+2023/12/09 21:38:37 INFO <implementation/client.go:82> CLIENT! Successfully create client login=WaVxkCA id=536
+2023/12/09 21:38:37 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=536
+2023/12/09 21:38:37 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=536
+2023/12/09 21:38:37 DEBU <implementation/pet.go:31> PET! Start create new pet client login=WaVxkCA petName=sPtWLIS
+2023/12/09 21:38:37 INFO <implementation/pet.go:62> PET! Successfully Create new pet client login=WaVxkCA petName=sPtWLIS
+2023/12/09 21:38:37 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=536
+2023/12/09 21:38:37 INFO <implementation/pet.go:116> PET! Successfully repository method GetAllByClient clientId=536
+2023/12/09 21:39:24 DEBU <implementation/client.go:51> CLIENT! Start create client with login=atFUplQ
+2023/12/09 21:39:24 DEBU <implementation/client.go:46> CLIENT! Successfully GetClientByLogin login=atFUplQ
+2023/12/09 21:39:24 INFO <implementation/client.go:82> CLIENT! Successfully create client login=atFUplQ id=537
+2023/12/09 21:39:24 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=537
+2023/12/09 21:39:24 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=537
+2023/12/09 21:39:24 DEBU <implementation/pet.go:31> PET! Start create new pet client login=atFUplQ petName=NLOXMhz
+2023/12/09 21:39:24 INFO <implementation/pet.go:62> PET! Successfully Create new pet client login=atFUplQ petName=NLOXMhz
+2023/12/09 21:39:24 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=537
+2023/12/09 21:39:24 INFO <implementation/pet.go:116> PET! Successfully repository method GetAllByClient clientId=537
+2023/12/09 21:39:33 DEBU <implementation/client.go:51> CLIENT! Start create client with login=BVfljiC
+2023/12/09 21:39:33 DEBU <implementation/client.go:46> CLIENT! Successfully GetClientByLogin login=BVfljiC
+2023/12/09 21:39:33 INFO <implementation/client.go:82> CLIENT! Successfully create client login=BVfljiC id=538
+2023/12/09 21:39:33 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=538
+2023/12/09 21:39:33 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=538
+2023/12/09 21:39:33 DEBU <implementation/pet.go:31> PET! Start create new pet client login=BVfljiC petName=Lzxgyps
+2023/12/09 21:39:33 INFO <implementation/pet.go:62> PET! Successfully Create new pet client login=BVfljiC petName=Lzxgyps
+2023/12/09 21:39:33 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=538
+2023/12/09 21:39:33 INFO <implementation/pet.go:116> PET! Successfully repository method GetAllByClient clientId=538
+2023/12/09 21:39:55 DEBU <implementation/client.go:51> CLIENT! Start create client with login=jqrHPYz
+2023/12/09 21:39:55 DEBU <implementation/client.go:46> CLIENT! Successfully GetClientByLogin login=jqrHPYz
+2023/12/09 21:39:55 INFO <implementation/client.go:82> CLIENT! Successfully create client login=jqrHPYz id=539
+2023/12/09 21:39:55 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=539
+2023/12/09 21:39:55 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=539
+2023/12/09 21:39:55 DEBU <implementation/pet.go:31> PET! Start create new pet client login=jqrHPYz petName=LOQiTiH
+2023/12/09 21:39:56 INFO <implementation/pet.go:62> PET! Successfully Create new pet client login=jqrHPYz petName=LOQiTiH
+2023/12/09 21:39:56 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=539
+2023/12/09 21:39:56 INFO <implementation/pet.go:116> PET! Successfully repository method GetAllByClient clientId=539
+2023/12/09 21:42:04 DEBU <implementation/client.go:51> CLIENT! Start create client with login=ILBHIiE
+2023/12/09 21:42:04 DEBU <implementation/client.go:46> CLIENT! Successfully GetClientByLogin login=ILBHIiE
+2023/12/09 21:42:04 INFO <implementation/client.go:82> CLIENT! Successfully create client login=ILBHIiE id=540
+2023/12/09 21:42:04 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=540
+2023/12/09 21:42:04 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=540
+2023/12/09 21:42:04 DEBU <implementation/pet.go:31> PET! Start create new pet client login=ILBHIiE petName=HUOeLmd
+2023/12/09 21:42:04 INFO <implementation/pet.go:62> PET! Successfully Create new pet client login=ILBHIiE petName=HUOeLmd
+2023/12/09 21:42:04 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=540
+2023/12/09 21:42:04 INFO <implementation/pet.go:116> PET! Successfully repository method GetAllByClient clientId=540
+2023/12/09 21:42:14 DEBU <implementation/client.go:51> CLIENT! Start create client with login=bHhamXa
+2023/12/09 21:42:14 DEBU <implementation/client.go:46> CLIENT! Successfully GetClientByLogin login=bHhamXa
+2023/12/09 21:42:14 INFO <implementation/client.go:82> CLIENT! Successfully create client login=bHhamXa id=541
+2023/12/09 21:42:14 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=541
+2023/12/09 21:42:14 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=541
+2023/12/09 21:42:14 DEBU <implementation/pet.go:31> PET! Start create new pet client login=bHhamXa petName=rBgemjq
+2023/12/09 21:42:14 INFO <implementation/pet.go:62> PET! Successfully Create new pet client login=bHhamXa petName=rBgemjq
+2023/12/09 21:42:14 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=541
+2023/12/09 21:42:14 INFO <implementation/pet.go:116> PET! Successfully repository method GetAllByClient clientId=541
+2023/12/09 21:44:52 DEBU <implementation/client.go:51> CLIENT! Start create client with login=bzRqufN
+2023/12/09 21:44:52 DEBU <implementation/client.go:46> CLIENT! Successfully GetClientByLogin login=bzRqufN
+2023/12/09 21:44:52 INFO <implementation/client.go:82> CLIENT! Successfully create client login=bzRqufN id=542
+2023/12/09 21:44:52 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=542
+2023/12/09 21:44:52 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=542
+2023/12/09 21:44:52 DEBU <implementation/pet.go:31> PET! Start create new pet client login=bzRqufN petName=VcOzYBZ
+2023/12/09 21:44:52 INFO <implementation/pet.go:62> PET! Successfully Create new pet client login=bzRqufN petName=VcOzYBZ
+2023/12/09 21:44:52 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=542
+2023/12/09 21:44:52 INFO <implementation/pet.go:116> PET! Successfully repository method GetAllByClient clientId=542
+2023/12/09 21:46:18 DEBU <implementation/client.go:51> CLIENT! Start create client with login=cxXkwCW
+2023/12/09 21:46:18 DEBU <implementation/client.go:46> CLIENT! Successfully GetClientByLogin login=cxXkwCW
+2023/12/09 21:46:18 INFO <implementation/client.go:82> CLIENT! Successfully create client login=cxXkwCW id=543
+2023/12/09 21:46:18 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=543
+2023/12/09 21:46:18 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=543
+2023/12/09 21:46:18 DEBU <implementation/pet.go:31> PET! Start create new pet client login=cxXkwCW petName=jJqwVNX
+2023/12/09 21:46:18 INFO <implementation/pet.go:62> PET! Successfully Create new pet client login=cxXkwCW petName=jJqwVNX
+2023/12/09 21:46:18 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=543
+2023/12/09 21:46:18 INFO <implementation/pet.go:116> PET! Successfully repository method GetAllByClient clientId=543
+2023/12/09 21:53:56 <registry/registry.go:98> 
+
+2023/12/09 21:53:56 INFO <registry/registry.go:99> Success initialization of new Logger!
+2023/12/09 21:53:56 DEBU <flags/postrgres.go:19> POSTGRES! Start init postgreSQL user=dashori DBName=postgres host=localhost port=5432
+2023/12/09 21:53:56 INFO <flags/postrgres.go:40> POSTGRES! Successfully init postgreSQL
+2023/12/09 21:53:56 INFO <postgres_repo/createPostgres.go:31> POSTGRES! Successfully create postgres repository fields
+2023/12/09 21:53:56 INFO <registry/registry.go:43> Success initialization of repositories
+2023/12/09 21:53:56 INFO <registry/registry.go:59> Success initialization of services
+2023/12/09 21:53:56 INFO <cmd/main.go:31> Start with api!
+2023/12/09 21:54:05 DEBU <implementation/client.go:51> CLIENT! Start create client with login=dashori6
+2023/12/09 21:54:05 WARN <implementation/client.go:59> CLIENT! Client already exists login=dashori6
+2023/12/09 21:54:09 DEBU <implementation/client.go:51> CLIENT! Start create client with login=dashori7
+2023/12/09 21:54:09 DEBU <implementation/client.go:46> CLIENT! Successfully GetClientByLogin login=dashori7
+2023/12/09 21:54:09 INFO <implementation/client.go:82> CLIENT! Successfully create client login=dashori7 id=544
+2023/12/09 21:54:13 DEBU <implementation/client.go:87> CLIENT! Start create client with login=dashori7
+2023/12/09 21:54:13 WARN <implementation/client.go:95> CLIENT! Client already exists login=dashori7
+2023/12/09 21:54:16 DEBU <implementation/client.go:87> CLIENT! Start create client with login=dashori8
+2023/12/09 21:54:16 DEBU <implementation/client.go:105> CLIENT! No otp token
+2023/12/09 21:56:16 <registry/registry.go:98> 
+
+2023/12/09 21:56:16 INFO <registry/registry.go:99> Success initialization of new Logger!
+2023/12/09 21:56:16 DEBU <flags/postrgres.go:19> POSTGRES! Start init postgreSQL user=dashori DBName=postgres host=localhost port=5432
+2023/12/09 21:56:16 INFO <flags/postrgres.go:40> POSTGRES! Successfully init postgreSQL
+2023/12/09 21:56:16 INFO <postgres_repo/createPostgres.go:31> POSTGRES! Successfully create postgres repository fields
+2023/12/09 21:56:16 INFO <registry/registry.go:43> Success initialization of repositories
+2023/12/09 21:56:16 INFO <registry/registry.go:59> Success initialization of services
+2023/12/09 21:56:16 INFO <cmd/main.go:31> Start with api!
+2023/12/09 21:56:21 DEBU <implementation/client.go:87> CLIENT! Start create client with login=dashori8
+2023/12/09 21:56:21 DEBU <implementation/client.go:105> CLIENT! No otp token
+2023/12/09 22:03:35 DEBU <implementation/client.go:51> CLIENT! Start create client with login=zFttUKA
+2023/12/09 22:03:35 DEBU <implementation/client.go:46> CLIENT! Successfully GetClientByLogin login=zFttUKA
+2023/12/09 22:03:35 INFO <implementation/client.go:82> CLIENT! Successfully create client login=zFttUKA id=545
+2023/12/09 22:03:35 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=545
+2023/12/09 22:03:35 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=545
+2023/12/09 22:03:35 DEBU <implementation/pet.go:31> PET! Start create new pet client login=zFttUKA petName=UzhHWCD
+2023/12/09 22:03:35 INFO <implementation/pet.go:62> PET! Successfully Create new pet client login=zFttUKA petName=UzhHWCD
+2023/12/09 22:03:35 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=545
+2023/12/09 22:03:35 INFO <implementation/pet.go:116> PET! Successfully repository method GetAllByClient clientId=545
+2023/12/09 22:04:44 DEBU <implementation/client.go:51> CLIENT! Start create client with login=AIoizLx
+2023/12/09 22:04:44 DEBU <implementation/client.go:46> CLIENT! Successfully GetClientByLogin login=AIoizLx
+2023/12/09 22:04:44 INFO <implementation/client.go:82> CLIENT! Successfully create client login=AIoizLx id=546
+2023/12/09 22:04:44 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=546
+2023/12/09 22:04:44 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=546
+2023/12/09 22:04:44 DEBU <implementation/pet.go:31> PET! Start create new pet client login=AIoizLx petName=HFjPBtd
+2023/12/09 22:04:44 INFO <implementation/pet.go:62> PET! Successfully Create new pet client login=AIoizLx petName=HFjPBtd
+2023/12/09 22:04:44 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=546
+2023/12/09 22:04:44 INFO <implementation/pet.go:116> PET! Successfully repository method GetAllByClient clientId=546
+2023/12/09 22:04:58 DEBU <implementation/client.go:51> CLIENT! Start create client with login=xojOwAh
+2023/12/09 22:04:58 DEBU <implementation/client.go:46> CLIENT! Successfully GetClientByLogin login=xojOwAh
+2023/12/09 22:04:58 INFO <implementation/client.go:82> CLIENT! Successfully create client login=xojOwAh id=547
+2023/12/09 22:04:58 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=547
+2023/12/09 22:04:58 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=547
+2023/12/09 22:04:58 DEBU <implementation/pet.go:31> PET! Start create new pet client login=xojOwAh petName=NQlVAgE
+2023/12/09 22:04:58 INFO <implementation/pet.go:62> PET! Successfully Create new pet client login=xojOwAh petName=NQlVAgE
+2023/12/09 22:04:58 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=547
+2023/12/09 22:04:58 INFO <implementation/pet.go:116> PET! Successfully repository method GetAllByClient clientId=547
+2023/12/09 22:04:58 DEBU <implementation/client.go:51> CLIENT! Start create client with login=tyfsdRQ
+2023/12/09 22:04:59 DEBU <implementation/client.go:46> CLIENT! Successfully GetClientByLogin login=tyfsdRQ
+2023/12/09 22:04:59 INFO <implementation/client.go:82> CLIENT! Successfully create client login=tyfsdRQ id=548
+2023/12/09 22:06:11 DEBU <implementation/client.go:51> CLIENT! Start create client with login=hcexeBO
+2023/12/09 22:06:11 DEBU <implementation/client.go:46> CLIENT! Successfully GetClientByLogin login=hcexeBO
+2023/12/09 22:06:11 INFO <implementation/client.go:82> CLIENT! Successfully create client login=hcexeBO id=549
+2023/12/09 22:06:11 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=549
+2023/12/09 22:06:11 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=549
+2023/12/09 22:06:11 DEBU <implementation/pet.go:31> PET! Start create new pet client login=hcexeBO petName=NQYHxca
+2023/12/09 22:06:11 INFO <implementation/pet.go:62> PET! Successfully Create new pet client login=hcexeBO petName=NQYHxca
+2023/12/09 22:06:11 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=549
+2023/12/09 22:06:11 INFO <implementation/pet.go:116> PET! Successfully repository method GetAllByClient clientId=549
+2023/12/09 22:06:11 DEBU <implementation/client.go:87> CLIENT! Start create client with login=EmXPwZa
+2023/12/09 22:06:11 DEBU <implementation/client.go:105> CLIENT! No otp token
+2023/12/09 22:08:27 DEBU <implementation/client.go:51> CLIENT! Start create client with login=vjncQYz
+2023/12/09 22:08:27 DEBU <implementation/client.go:46> CLIENT! Successfully GetClientByLogin login=vjncQYz
+2023/12/09 22:08:27 INFO <implementation/client.go:82> CLIENT! Successfully create client login=vjncQYz id=550
+2023/12/09 22:08:27 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=550
+2023/12/09 22:08:27 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=550
+2023/12/09 22:08:27 DEBU <implementation/pet.go:31> PET! Start create new pet client login=vjncQYz petName=vgSQxho
+2023/12/09 22:08:27 INFO <implementation/pet.go:62> PET! Successfully Create new pet client login=vjncQYz petName=vgSQxho
+2023/12/09 22:08:27 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=550
+2023/12/09 22:08:27 INFO <implementation/pet.go:116> PET! Successfully repository method GetAllByClient clientId=550
+2023/12/09 22:09:03 DEBU <implementation/client.go:51> CLIENT! Start create client with login=ErOMcdl
+2023/12/09 22:09:03 DEBU <implementation/client.go:46> CLIENT! Successfully GetClientByLogin login=ErOMcdl
+2023/12/09 22:09:03 INFO <implementation/client.go:82> CLIENT! Successfully create client login=ErOMcdl id=551
+2023/12/09 22:09:03 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=551
+2023/12/09 22:09:03 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=551
+2023/12/09 22:09:03 DEBU <implementation/pet.go:31> PET! Start create new pet client login=ErOMcdl petName=OVlFSkv
+2023/12/09 22:09:03 INFO <implementation/pet.go:62> PET! Successfully Create new pet client login=ErOMcdl petName=OVlFSkv
+2023/12/09 22:09:03 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=551
+2023/12/09 22:09:03 INFO <implementation/pet.go:116> PET! Successfully repository method GetAllByClient clientId=551
+2023/12/09 22:09:11 DEBU <implementation/client.go:51> CLIENT! Start create client with login=CfhSelA
+2023/12/09 22:09:11 DEBU <implementation/client.go:46> CLIENT! Successfully GetClientByLogin login=CfhSelA
+2023/12/09 22:09:11 INFO <implementation/client.go:82> CLIENT! Successfully create client login=CfhSelA id=552
+2023/12/09 22:09:11 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=552
+2023/12/09 22:09:11 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=552
+2023/12/09 22:09:11 DEBU <implementation/pet.go:31> PET! Start create new pet client login=CfhSelA petName=MVZzUCI
+2023/12/09 22:09:11 INFO <implementation/pet.go:62> PET! Successfully Create new pet client login=CfhSelA petName=MVZzUCI
+2023/12/09 22:09:11 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=552
+2023/12/09 22:09:11 INFO <implementation/pet.go:116> PET! Successfully repository method GetAllByClient clientId=552
+2023/12/09 22:09:18 DEBU <implementation/client.go:51> CLIENT! Start create client with login=yCZZagn
+2023/12/09 22:09:18 DEBU <implementation/client.go:46> CLIENT! Successfully GetClientByLogin login=yCZZagn
+2023/12/09 22:09:18 INFO <implementation/client.go:82> CLIENT! Successfully create client login=yCZZagn id=553
+2023/12/09 22:09:18 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=553
+2023/12/09 22:09:18 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=553
+2023/12/09 22:09:18 DEBU <implementation/pet.go:31> PET! Start create new pet client login=yCZZagn petName=NBJQDSE
+2023/12/09 22:09:18 INFO <implementation/pet.go:62> PET! Successfully Create new pet client login=yCZZagn petName=NBJQDSE
+2023/12/09 22:09:18 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=553
+2023/12/09 22:09:18 INFO <implementation/pet.go:116> PET! Successfully repository method GetAllByClient clientId=553
+2023/12/09 22:09:24 DEBU <implementation/client.go:51> CLIENT! Start create client with login=dgPOcff
+2023/12/09 22:09:24 DEBU <implementation/client.go:46> CLIENT! Successfully GetClientByLogin login=dgPOcff
+2023/12/09 22:09:24 INFO <implementation/client.go:82> CLIENT! Successfully create client login=dgPOcff id=554
+2023/12/09 22:09:24 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=554
+2023/12/09 22:09:24 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=554
+2023/12/09 22:09:24 DEBU <implementation/pet.go:31> PET! Start create new pet client login=dgPOcff petName=hlZChrf
+2023/12/09 22:09:24 INFO <implementation/pet.go:62> PET! Successfully Create new pet client login=dgPOcff petName=hlZChrf
+2023/12/09 22:09:24 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=554
+2023/12/09 22:09:24 INFO <implementation/pet.go:116> PET! Successfully repository method GetAllByClient clientId=554
+2023/12/09 22:09:47 DEBU <implementation/client.go:51> CLIENT! Start create client with login=yngtznG
+2023/12/09 22:09:47 DEBU <implementation/client.go:46> CLIENT! Successfully GetClientByLogin login=yngtznG
+2023/12/09 22:09:47 INFO <implementation/client.go:82> CLIENT! Successfully create client login=yngtznG id=555
+2023/12/09 22:09:47 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=555
+2023/12/09 22:09:47 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=555
+2023/12/09 22:09:47 DEBU <implementation/pet.go:31> PET! Start create new pet client login=yngtznG petName=SiWVAXI
+2023/12/09 22:09:47 INFO <implementation/pet.go:62> PET! Successfully Create new pet client login=yngtznG petName=SiWVAXI
+2023/12/09 22:09:47 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=555
+2023/12/09 22:09:47 INFO <implementation/pet.go:116> PET! Successfully repository method GetAllByClient clientId=555
+2023/12/09 22:10:27 DEBU <implementation/client.go:51> CLIENT! Start create client with login=JetdipR
+2023/12/09 22:10:27 DEBU <implementation/client.go:46> CLIENT! Successfully GetClientByLogin login=JetdipR
+2023/12/09 22:10:27 INFO <implementation/client.go:82> CLIENT! Successfully create client login=JetdipR id=556
+2023/12/09 22:10:27 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=556
+2023/12/09 22:10:27 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=556
+2023/12/09 22:10:27 DEBU <implementation/pet.go:31> PET! Start create new pet client login=JetdipR petName=duyBDyz
+2023/12/09 22:10:27 INFO <implementation/pet.go:62> PET! Successfully Create new pet client login=JetdipR petName=duyBDyz
+2023/12/09 22:10:27 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=556
+2023/12/09 22:10:27 INFO <implementation/pet.go:116> PET! Successfully repository method GetAllByClient clientId=556
+2023/12/09 22:10:27 DEBU <implementation/client.go:87> CLIENT! Start create client with login=QOPNuLf
+2023/12/09 22:10:27 DEBU <implementation/client.go:46> CLIENT! Successfully GetClientByLogin login=QOPNuLf
+2023/12/09 22:10:27 INFO <implementation/client.go:146> CLIENT! Successfully create client login=QOPNuLf id=557
+2023/12/09 22:10:27 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=557
+2023/12/09 22:10:27 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=557
+2023/12/09 22:10:27 DEBU <implementation/pet.go:31> PET! Start create new pet client login=QOPNuLf petName=agSeqJo
+2023/12/09 22:10:27 INFO <implementation/pet.go:62> PET! Successfully Create new pet client login=QOPNuLf petName=agSeqJo
+2023/12/09 22:10:27 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=557
+2023/12/09 22:10:27 INFO <implementation/pet.go:116> PET! Successfully repository method GetAllByClient clientId=557
+2023/12/09 22:12:00 DEBU <implementation/client.go:51> CLIENT! Start create client with login=rWUHunk
+2023/12/09 22:12:00 DEBU <implementation/client.go:46> CLIENT! Successfully GetClientByLogin login=rWUHunk
+2023/12/09 22:12:00 INFO <implementation/client.go:82> CLIENT! Successfully create client login=rWUHunk id=558
+2023/12/09 22:12:00 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=558
+2023/12/09 22:12:00 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=558
+2023/12/09 22:12:00 DEBU <implementation/pet.go:31> PET! Start create new pet client login=rWUHunk petName=yFOTjBN
+2023/12/09 22:12:00 INFO <implementation/pet.go:62> PET! Successfully Create new pet client login=rWUHunk petName=yFOTjBN
+2023/12/09 22:12:00 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=558
+2023/12/09 22:12:00 INFO <implementation/pet.go:116> PET! Successfully repository method GetAllByClient clientId=558
+2023/12/09 22:12:00 DEBU <implementation/client.go:87> CLIENT! Start create client with login=RFKOQLY
+2023/12/09 22:12:00 DEBU <implementation/client.go:105> CLIENT! No otp token
+2023/12/09 22:12:05 DEBU <implementation/client.go:87> CLIENT! Start create client with login=RFKOQLY
+2023/12/09 22:12:06 DEBU <implementation/client.go:46> CLIENT! Successfully GetClientByLogin login=RFKOQLY
+2023/12/09 22:12:06 INFO <implementation/client.go:146> CLIENT! Successfully create client login=RFKOQLY id=559
+2023/12/09 22:12:06 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=559
+2023/12/09 22:12:06 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=559
+2023/12/09 22:12:06 DEBU <implementation/pet.go:31> PET! Start create new pet client login=RFKOQLY petName=YVCIgHp
+2023/12/09 22:12:06 INFO <implementation/pet.go:62> PET! Successfully Create new pet client login=RFKOQLY petName=YVCIgHp
+2023/12/09 22:12:06 DEBU <implementation/client.go:179> CLIENT! Success repository method GetClientById id=559
+2023/12/09 22:12:06 INFO <implementation/pet.go:116> PET! Successfully repository method GetAllByClient clientId=559

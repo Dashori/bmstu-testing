@@ -64,34 +64,6 @@ func ParsePetsBody(response *http.Response) (models.Pets, error) {
 	return result, nil
 }
 
-func ParseDoctorBody(response *http.Response) (models.Doctor, error) {
-	body, err := io.ReadAll(response.Body)
-	if err != nil {
-		return models.Doctor{}, errors.ErrorParseBody
-	}
-
-	var result models.Doctor
-	if err := json.Unmarshal(body, &result); err != nil {
-		return models.Doctor{}, errors.ErrorParseBody
-	}
-
-	return result, nil
-}
-
-func ParseDoctorsBody(response *http.Response) (models.Doctors, error) {
-	body, err := io.ReadAll(response.Body)
-	if err != nil {
-		return models.Doctors{}, errors.ErrorParseBody
-	}
-
-	var result models.Doctors
-	if err := json.Unmarshal(body, &result); err != nil {
-		return models.Doctors{}, errors.ErrorParseBody
-	}
-
-	return result, nil
-}
-
 func ParseRecordsBody(response *http.Response) (models.Records, error) {
 	body, err := io.ReadAll(response.Body)
 	if err != nil {
