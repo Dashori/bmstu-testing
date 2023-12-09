@@ -21,20 +21,22 @@ import (
 func ClientTestOTP(client *http.Client) error {
 	var token string
 	var err error
+	fmt.Println("\n\n***********************************************")
+	fmt.Println("------------ START TEST WITH OTP -------------\n")
 
 	token, err = createClientOTP(client)
 	if err != nil {
 		fmt.Println(err)
 		return err
 	}
-	fmt.Println("------- 1/4 Successfully create client -------")
+	fmt.Println("\n------- 1/4 Successfully create client -------")
 
 	err = getInfo(client, token)
 	if err != nil {
 		fmt.Println(err)
 		return err
 	}
-	fmt.Println("------- 2/4 Successfully get client info -------")
+	fmt.Println("\n------- 2/4 Successfully get client info -------")
 
 	err = addPet(client, token)
 	if err != nil {
@@ -42,7 +44,7 @@ func ClientTestOTP(client *http.Client) error {
 		return err
 	}
 
-	fmt.Println("------- 3/4 Successfully add new pet -------")
+	fmt.Println("\n------- 3/4 Successfully add new pet -------")
 
 	err = getPets(client, token)
 	if err != nil {
@@ -50,7 +52,10 @@ func ClientTestOTP(client *http.Client) error {
 		return err
 	}
 
-	fmt.Println("------- 4/4 Successfully get pets -------")
+	fmt.Println("\n------- 4/4 Successfully get pets -------\n")
+
+	fmt.Println("------------- END TEST WITH OTP ---------------")
+	fmt.Println("***********************************************")
 
 	return nil
 }
