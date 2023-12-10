@@ -12,6 +12,22 @@ stages:
   - test
   - report
     
+vault-test:
+  stage: test
+  script:
+    - echo $CI_COMMIT_REF_NAME
+    - echo $CI_COMMIT_REF_PROTECTED
+    - echo $CI_JOB_JWT
+    - export VAULT_ADDR='http://127.0.0.1:8200'
+    - export VAULT_TOKEN="$(vault write -field=token auth/jwt/login role=email jwt=$CI_JOB_JWT)"
+    - export PASSWORD="$(vault kv get -field=password secret/emailFrom)"
+    - echo $PASSWORD
+    - export PASSWORD="$(vault kv get -field=password secret/emailTo)"
+    - echo $PASSWORD
+
+  tags:
+    - shell
+
 unit-tests:
   stage: test
   script:
