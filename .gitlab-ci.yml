@@ -15,7 +15,7 @@ stages:
 unit-tests:
   stage: test
   script:
-    - touch backend/internal/services/implementation/testRepos.log 
+    - touch backend/internal/services/implementation/testService.log
     - touch backend/internal/repository/postgres_repo/testRepos.log
     - cd backend/internal/services/implementation
     - go test pet_test.go client_test.go doctor_test.go record_test.go pet.go record.go client.go doctor.go setup.go -gcflags=all=-l -tags=unit -cover -coverprofile=serviceTest.out -json -v > testService.log
@@ -45,8 +45,6 @@ e2e-tests:
     - export VAULT_ADDR='http://127.0.0.1:8200'
     - export PASSWORD_FROM="$(vault kv get -field=password secret/emailFrom)"
     - export PASSWORD_TO="$(vault kv get -field=password secret/emailTo)"
-    - echo $PASSWORD_FROM
-    - echo $PASSWORD_TO
     - docker-compose up -d
     - docker ps
     - cd e2e
