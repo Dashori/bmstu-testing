@@ -36,8 +36,6 @@ int-tests:
     - go test petPostgres_test.go recordPostgres_test.go pet.go record.go setup.go  -gcflags=all=-l -tags=integration -cover -coverprofile=serviceIntegration.out -json -v > testIntegration.log  
   needs:
     - unit-tests
-  dependencies:
-    - unit-tests
   artifacts:
     paths:
       - backend/internal/services/implementation/testIntegration.log
@@ -55,26 +53,24 @@ e2e-tests:
     - docker-compose down
   needs:
     - int-tests
-  dependencies:
-    - int-tests
   tags:
     - shell
 
 report:
-    stage: report
-    script:
-      - go install github.com/polnaya-katuxa/test-report@latest
-      - mv backend/internal/services/implementation/testService.log testService.log
-      - mv backend/internal/repository/postgres_repo/testRepos.log testRepos.log
-      - mv backend/internal/services/implementation/testIntegration.log testIntegration.log
-      - touch test.log
-      - cat testService.log >> test.log
-      - cat testRepos.log >> test.log
-      - cat testIntegration.log >> test.log
-      - test-report -f ./test.log -o .
-    needs:
-      - unit-tests
-      - int-tests
-    artifacts:
-      paths:
-        - report.html
+  stage: report
+  script:
+    - go install github.com/polnaya-katuxa/test-report@latest
+    - mv backend/internal/services/implementation/testService.log testService.log || true
+    - mv backend/internal/repository/postgres_repo/testRepos.log testRepos.log || true
+    - mv backend/internal/services/implementation/testIntegration.log testIntegration.log || true
+    - touch test.log
+    - cat testService.log >> test.log || true
+    - cat testRepos.log >> test.log || true
+    - cat testIntegration.log >> test.log || true
+    - test-report -f ./test.log -o .
+  dependencies:
+    - unit-tests
+    - int-tests
+  artifacts:
+    paths:
+      - report.html
