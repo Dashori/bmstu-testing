@@ -12,20 +12,20 @@ stages:
   - test
   - report
     
-vault-test:
-  stage: test
-  script:
-    - echo $CI_COMMIT_REF_NAME
-    - echo $CI_COMMIT_REF_PROTECTED
-    - echo $CI_JOB_JWT
-    - export VAULT_ADDR='http://127.0.0.1:8200'
-    - export PASSWORD="$(vault kv get -field=password secret/emailFrom)"
-    - echo $PASSWORD
-    - export PASSWORD="$(vault kv get -field=password secret/emailTo)"
-    - echo $PASSWORD
+# vault-test:
+#   stage: test
+#   script:
+#     - echo $CI_COMMIT_REF_NAME
+#     - echo $CI_COMMIT_REF_PROTECTED
+#     - echo $CI_JOB_JWT
+#     - export VAULT_ADDR='http://127.0.0.1:8200'
+#     - export PASSWORD="$(vault kv get -field=password secret/emailFrom)"
+#     - echo $PASSWORD
+#     - export PASSWORD="$(vault kv get -field=password secret/emailTo)"
+#     - echo $PASSWORD
 
-  tags:
-    - shell
+#   tags:
+#     - shell
 
 unit-tests:
   stage: test
@@ -59,6 +59,11 @@ int-tests:
 e2e-tests:
   stage: test
   script:
+    - export VAULT_ADDR='http://127.0.0.1:8200'
+    - export PASSWORD_FROM="$(vault kv get -field=password secret/emailFrom)"
+    - export PASSWORD_TO="$(vault kv get -field=password secret/emailTo)"
+    - echo $PASSWORD_FROM
+    - echo $PASSWORD_TO
     - docker-compose up -d
     - docker ps
     - cd e2e

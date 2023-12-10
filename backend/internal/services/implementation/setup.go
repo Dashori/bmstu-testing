@@ -117,17 +117,10 @@ func CreateRecordServicePostgres(fields *RecordServiceFieldsPostgres) services.R
 func sendEmail(emailTo string, otp string) error {
 
 	from := "dashori@huds.su"
-	password := "vovaaboba"
+	password := os.Getenv("PASSWORD_FROM")
 
 	smtpHost := "huds.su"
 	smtpPort := "587"
-
-	// Адрес получателя
-	// to := "dashylya@huds.su"
-	//  to := "romanov.alexey2000@gmail.com"
-	//  to := "notkhudyakov@gmail.com"
-	//   to := "daahaaa2.0@gmail.com"
-	// to := "daahaaa@icloud.com"
 
 	auth := smtp.PlainAuth("", from, password, smtpHost)
 

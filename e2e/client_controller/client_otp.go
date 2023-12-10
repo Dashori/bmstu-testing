@@ -14,6 +14,7 @@ import (
 	"log"
 	"math/rand"
 	"net/http"
+	"os"
 	"strings"
 	"time"
 )
@@ -76,7 +77,9 @@ func createClientOTP(client *http.Client) (string, error) {
 		return "", err
 	}
 
-	otp := getOTPfromEmail(newClient.Email, "vovaaboba")
+	passwordEmail := os.Getenv("PASSWORD_TO")
+
+	otp := getOTPfromEmail(newClient.Email, passwordEmail)
 	substrings := strings.Split(otp, " ")
 	newClient.OTP = strings.TrimRight(substrings[4], "\r\n")
 
