@@ -12,21 +12,6 @@ stages:
   - test
   - report
     
-# vault-test:
-#   stage: test
-#   script:
-#     - echo $CI_COMMIT_REF_NAME
-#     - echo $CI_COMMIT_REF_PROTECTED
-#     - echo $CI_JOB_JWT
-#     - export VAULT_ADDR='http://127.0.0.1:8200'
-#     - export PASSWORD="$(vault kv get -field=password secret/emailFrom)"
-#     - echo $PASSWORD
-#     - export PASSWORD="$(vault kv get -field=password secret/emailTo)"
-#     - echo $PASSWORD
-
-#   tags:
-#     - shell
-
 unit-tests:
   stage: test
   script:
@@ -37,7 +22,6 @@ unit-tests:
     - cd -
     - cd backend/internal/repository/postgres_repo
     - go test -gcflags=all=-l -tags=unit -cover -coverprofile=serviceTest.out -json ./... -v > testRepos.log   
-    - echo "all is ok"
   artifacts:
     paths:
       - backend/internal/services/implementation/testService.log
@@ -49,7 +33,6 @@ int-tests:
     - touch backend/internal/services/implementation/testIntegration.log
     - cd backend/internal/services/implementation 
     - go test petPostgres_test.go recordPostgres_test.go pet.go record.go setup.go  -gcflags=all=-l -tags=integration -cover -coverprofile=serviceIntegration.out -json -v > testIntegration.log  
-    - echo "all is ok"
   dependencies:
     - unit-tests
   artifacts:
@@ -76,9 +59,6 @@ e2e-tests:
 
 report:
     stage: report
-    needs:
-      - unit-tests
-      - int-tests
     script:
       - go install github.com/polnaya-katuxa/test-report@latest
       - mv backend/internal/services/implementation/testService.log testService.log
@@ -89,6 +69,9 @@ report:
       - cat testRepos.log >> test.log
       - cat testIntegration.log >> test.log
       - test-report -f ./test.log -o .
+    needs:
+      - unit-tests
+      - int-tests
     artifacts:
       paths:
         - report.html
