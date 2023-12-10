@@ -51,6 +51,8 @@ e2e-tests:
     - docker-compose down
   dependencies:
     - int-tests
+  tags:
+    - shell
 
 report:
     stage: report
