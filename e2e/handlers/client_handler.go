@@ -9,7 +9,7 @@ import (
 )
 
 const port = "8080"
-const adress = "docker"
+const adress = "localhost"
 
 func DoRequest(client *http.Client, request *http.Request) (*http.Response, error) {
 	response, err := client.Do(request)
