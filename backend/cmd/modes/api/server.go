@@ -6,40 +6,13 @@ import (
 	benchmark "backend/internal/repository/postgres_repo/benchmark"
 	"fmt"
 	"github.com/gin-gonic/gin"
-	"github.com/prometheus/client_golang/prometheus"
-	"github.com/prometheus/client_golang/prometheus/promauto"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"net/http"
-	"time"
 )
 
 type services struct {
 	Services *registry.AppServiceFields
 }
-
-var (
-	httpRequestsTotal = promauto.NewCounterVec(
-		prometheus.CounterOpts{
-			Name: "http_requests_total",
-			Help: "Total number of HTTP requests",
-		},
-		[]string{"method", "path", "status"},
-	)
-
-	responseLatency = promauto.NewHistogramVec(
-		prometheus.HistogramOpts{
-			Name:    "http_response_latency_seconds",
-			Help:    "Response latency of HTTP requests",
-			Buckets: prometheus.DefBuckets,
-		},
-		[]string{"method", "path", "status"},
-	)
-
-	inFlightRequests = promauto.NewGauge(prometheus.GaugeOpts{
-		Name: "http_in_flight_requests",
-		Help: "Number of in-flight HTTP requests",
-	})
-)
 
 func prometheusHandler() gin.HandlerFunc {
 	h := promhttp.Handler()
@@ -63,22 +36,6 @@ func SetupServer(a *registry.App) *gin.Engine {
 		}
 
 		ctx.JSON(http.StatusOK, res)
-	})
-
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		start := time.Now()
-		inFlightRequests.Inc()
-
-		status := http.StatusOK
-		defer func() {
-			duration := time.Since(start).Seconds()
-			httpRequestsTotal.WithLabelValues(r.Method, r.URL.Path, string(status)).Inc()
-			responseLatency.WithLabelValues(r.Method, r.URL.Path, string(status)).Observe(duration)
-			inFlightRequests.Dec()
-		}()
-
-		time.Sleep(100 * time.Millisecond)
-		w.WriteHeader(status)
 	})
 
 	api := router.Group("/api")

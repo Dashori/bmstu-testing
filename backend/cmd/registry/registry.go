@@ -9,10 +9,6 @@ import (
 	servicesImplementation "backend/internal/services/implementation"
 	"github.com/charmbracelet/log"
 	"os"
-	"io"
-	"github.com/opentracing/opentracing-go"
-	"github.com/uber/jaeger-client-go"
-    jaeger_config "github.com/uber/jaeger-client-go/config"
 )
 
 type AppServiceFields struct {
@@ -20,8 +16,6 @@ type AppServiceFields struct {
 	DoctorService services.DoctorService
 	PetService    services.PetService
 	RecordService services.RecordService
-	Tracer opentracing.Tracer
-	Closer io.Closer
 }
 
 type App struct {
@@ -68,10 +62,6 @@ func (a *App) initServices(r *AppRepositoryFields) *AppServiceFields {
 
 func (a *App) Init() error {
 	a.initLogger()
-	
-	tracer, closer := a.InitJaeger("backend")
-	opentracing.SetGlobalTracer(tracer)
-	defer closer.Close()
 
 	fields, err := postgres_repo.CreatePostgresRepositoryFields(a.Config.Postgres, a.Logger)
 	if err != nil {
@@ -81,10 +71,6 @@ func (a *App) Init() error {
 
 	a.Repositories = a.initRepositories(fields)
 	a.Services = a.initServices(a.Repositories)
-
-	a.Services.Tracer = tracer
-	a.Services.Closer = closer
-
 	return nil
 }
 
@@ -112,25 +98,6 @@ func (a *App) initLogger() {
 	Logger.Info("Success initialization of new Logger!")
 
 	a.Logger = Logger
-}
-
-func (a *App) InitJaeger(serviceName string) (opentracing.Tracer, io.Closer) {
-    cfg := jaeger_config.Configuration{
-        ServiceName: serviceName,
-        Sampler: &jaeger_config.SamplerConfig{
-            Type:  "const",
-            Param: 1,
-        },
-        Reporter: &jaeger_config.ReporterConfig{
-            LogSpans: true,
-        },
-    }
-
-    tracer, closer, err := cfg.NewTracer(jaeger_config.Logger(jaeger.StdLogger))
-    if err != nil {
-        a.Logger.Error("Could not initialize jaeger tracer:", err)
-    }
-    return tracer, closer
 }
 
 func (a *App) Run() error {

@@ -9,15 +9,6 @@ import (
 )
 
 func (t *services) createClient(c *gin.Context) {
-	// _, span := t.Services.Tracer.StartSpan("my-operation")
-	// spanCtx, _ := t.Services.tracer.Extract(opentracing.HTTPHeaders, opentracing.HTTPHeadersCarrier(r.Header))
-
-	// childSpan := tracer.StartSpan("child", opentracing.ChildOf(rootSpan.Context()))
-
-	span := t.Services.Tracer.StartSpan("Create client")
-
-	defer span.Finish()
-
 	var client *models.Client
 	err := c.ShouldBindJSON(&client)
 
@@ -26,22 +17,16 @@ func (t *services) createClient(c *gin.Context) {
 		return
 	}
 
-	span.Log("Create Client", "Bind JSON")
-
 	res, err := t.Services.ClientService.Create(client, client.Password)
 	if !errorHandler(c, err) { //!= true
 		return
 	}
-
-	span.SetTag("Create Client", "Create client")
 
 	token, err := token.GenerateToken(res.ClientId, "client")
 	if err != nil {
 		jsonInternalServerErrorResponse(c, err)
 		return
 	}
-
-	span.SetTag("Create Client", "Generate token")
 
 	jsonClientCreateResponse(c, res, token)
 }
