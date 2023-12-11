@@ -61,7 +61,7 @@ services:
     environment:
       TZ: "Europe/Moscow"
     depends_on:
-    backend:
+      backend:
         condition: service_started
     networks:
       - mynetwork
