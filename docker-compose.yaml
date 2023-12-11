@@ -31,7 +31,7 @@ services:
       dockerfile: Dockerfile
     image: test-backend
     container_name: test-backend
-    command: go run ./cmd/main.go && sleep 20
+    command: go run ./cmd/main.go
     environment:
       PASSWORD_FROM: $PASSWORD_FROM
       TC_HOST: "host.docker.internal"

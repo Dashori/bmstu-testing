@@ -45,6 +45,7 @@ e2e-test:
   script:
     - docker-compose down
     - docker-compose up -d
+    - sleep 10
     - docker ps
     - cd e2e
     - go run main.go
@@ -63,6 +64,7 @@ e2e-test-2fa:
     - export PASSWORD_TO="$(vault kv get -field=password secret/emailTo)"
     - docker-compose down
     - docker-compose up -d
+    - sleep 10
     - docker ps
     - cd e2e/client_controller
     - go test
