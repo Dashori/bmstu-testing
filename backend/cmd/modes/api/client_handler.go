@@ -4,8 +4,10 @@ import (
 	token "backend/cmd/modes/api/utils"
 	"backend/internal/models"
 	servicesErrors "backend/internal/pkg/errors/servicesErrors"
-	"github.com/gin-gonic/gin"
+
 	"time"
+
+	"github.com/gin-gonic/gin"
 )
 
 func (t *services) createClient(c *gin.Context) {

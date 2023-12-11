@@ -7,6 +7,9 @@ import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
+	"go.opentelemetry.io/contrib/instrumentation/github.com/gin-gonic/gin/otelgin"
+	"go.opentelemetry.io/otel"
+	"go.opentelemetry.io/otel/propagation"
 	"net/http"
 )
 
@@ -23,9 +26,18 @@ func prometheusHandler() gin.HandlerFunc {
 }
 
 func SetupServer(a *registry.App) *gin.Engine {
+
+	tp, tpErr := JaegerTraceProvider()
+	if tpErr != nil {
+		fmt.Println(tpErr)
+		return nil
+	}
+	otel.SetTracerProvider(tp)
+	otel.SetTextMapPropagator(propagation.NewCompositeTextMapPropagator(propagation.TraceContext{}, propagation.Baggage{}))
 	t := services{a.Services}
 
 	router := gin.Default()
+
 	router.GET("/metrics", prometheusHandler())
 	router.GET("/bench", func(ctx *gin.Context) {
 		var res [][]string
@@ -40,6 +52,7 @@ func SetupServer(a *registry.App) *gin.Engine {
 
 	api := router.Group("/api")
 	{
+		api.Use(otelgin.Middleware("backend"))
 		api.POST("/setRole", t.setRole)
 
 		api.GET("/doctors", t.getAllDoctors)
