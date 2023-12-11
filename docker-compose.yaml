@@ -21,6 +21,7 @@ services:
         POSTGRES_PASSWORD: "parasha"
         POSTGRES_DB: "postgres"
         PGDATA: "/var/lib/postgresql/data/pgdata"
+        TZ: "Europe/Moscow"
     networks:
       - mynetwork
 
@@ -33,6 +34,10 @@ services:
     command: go run ./cmd/main.go
     environment:
       PASSWORD_FROM: $PASSWORD_FROM
+      TC_HOST: "host.docker.internal"
+      TZ: "Europe/Moscow"
+    volumes:
+     - /var/run/docker.sock://var/run/docker.sock
     ports: 
       - 8080:8080
     depends_on:
@@ -40,8 +45,55 @@ services:
         condition: service_healthy 
     networks:
       - mynetwork
-  
 
+  prometheus:
+    image: prom/prometheus:v2.48.0
+    volumes:
+      - ./prometheus.yaml:/prometheus.yaml
+    container_name: prometheus
+    hostname: prometheus
+    command:
+      - --config.file=/prometheus.yaml
+    ports:
+      - 9090:9090
+    restart: unless-stopped
+    environment:
+      TZ: "Europe/Moscow"
+    depends_on:
+      - backend
+    networks:
+      - mynetwork
+  
+  grafana:
+    image: grafana/grafana:10.2.2
+    user: root
+    ports:
+      - 3000:3000
+    volumes:
+      - ./grafana:/var/lib/grafana
+      - ./grafana/provisioning/:/etc/grafana/provisioning/
+    container_name: grafana
+    hostname: grafana
+    restart: unless-stopped
+    environment:
+      TZ: "Europe/Moscow"
+    depends_on:
+      - prometheus
+    networks:
+      - mynetwork
+
+  jaeger:
+    container_name: jaeger
+    image: jaegertracing/all-in-one:1.52
+    restart: always
+    environment:
+      TZ: "Europe/Moscow"
+    ports:
+      - "16686:16686"
+      - "14268:14268"
+    networks:
+      - mynetwork
+  
 networks:
   mynetwork:
     driver: bridge
