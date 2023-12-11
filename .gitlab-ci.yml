@@ -40,12 +40,9 @@ int-tests:
     paths:
       - backend/internal/services/implementation/testIntegration.log
 
-e2e-tests:
+e2e-test:
   stage: test
   script:
-    - export VAULT_ADDR='http://127.0.0.1:8200'
-    - export PASSWORD_FROM="$(vault kv get -field=password secret/emailFrom)"
-    - export PASSWORD_TO="$(vault kv get -field=password secret/emailTo)"
     - docker-compose up -d
     - docker ps
     - cd e2e
@@ -53,6 +50,22 @@ e2e-tests:
     - docker-compose down
   needs:
     - int-tests
+  tags:
+    - shell
+
+e2e-test-2fa:
+  stage: test
+  script:
+    - export VAULT_ADDR='http://127.0.0.1:8200'
+    - export PASSWORD_FROM="$(vault kv get -field=password secret/emailFrom)"
+    - export PASSWORD_TO="$(vault kv get -field=password secret/emailTo)"
+    - docker-compose up -d
+    - docker ps
+    - cd e2e/client_controller
+    - go test
+    - docker-compose down
+  needs:
+    - e2e-test
   tags:
     - shell
 

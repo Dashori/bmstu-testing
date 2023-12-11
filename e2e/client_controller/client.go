@@ -16,7 +16,7 @@ func ClientTest(client *http.Client) error {
 	var err error
 
 	fmt.Println("\n\n***********************************************")
-	fmt.Println("------------ START TEST WITHOUT OTP -------------\n")
+	fmt.Println("------------ START TEST WITHOUT OTP -------------")
 
 	token, err = createClient(client)
 	if err != nil {
@@ -49,7 +49,7 @@ func ClientTest(client *http.Client) error {
 	fmt.Println("\n---------- 4/4 Successfully get pets ----------")
 
 	fmt.Println("\n\n------------- END TEST WITHOUT OTP --------------")
-	fmt.Println("***********************************************\n\n")
+	fmt.Println("***********************************************")
 
 	return nil
 }

@@ -23,7 +23,7 @@ func ClientTestOTP(client *http.Client) error {
 	var token string
 	var err error
 	fmt.Println("\n\n***********************************************")
-	fmt.Println("------------ START TEST WITH OTP -------------\n")
+	fmt.Println("------------ START TEST WITH OTP -------------")
 
 	token, err = createClientOTP(client)
 	if err != nil {
@@ -53,7 +53,7 @@ func ClientTestOTP(client *http.Client) error {
 		return err
 	}
 
-	fmt.Println("\n------- 4/4 Successfully get pets -------\n")
+	fmt.Println("\n------- 4/4 Successfully get pets -------")
 
 	fmt.Println("------------- END TEST WITH OTP ---------------")
 	fmt.Println("***********************************************")
@@ -79,7 +79,7 @@ func createClientOTP(client *http.Client) (string, error) {
 
 	passwordEmail := os.Getenv("PASSWORD_TO")
 
-	otp := getOTPfromEmail(newClient.Email, passwordEmail)
+	otp, _ := getOTPfromEmail(newClient.Email, passwordEmail)
 	substrings := strings.Split(otp, " ")
 	newClient.OTP = strings.TrimRight(substrings[4], "\r\n")
 
@@ -99,11 +99,11 @@ func createClientOTP(client *http.Client) (string, error) {
 	return result.Token, nil
 }
 
-func getOTPfromEmail(email string, password string) string {
+func getOTPfromEmail(email string, password string) (string, error) {
 	fmt.Println("1")
 	c, err := client.DialTLS("huds.su:993", nil)
 	if err != nil {
-		log.Fatal(err)
+		return "", err
 	}
 	log.Println("Connected")
 
@@ -112,7 +112,7 @@ func getOTPfromEmail(email string, password string) string {
 
 	fmt.Println("2")
 	if err := c.Login(email, password); err != nil {
-		log.Fatal(err)
+		return "", err
 	}
 	log.Println("Logged in")
 
@@ -129,18 +129,18 @@ func getOTPfromEmail(email string, password string) string {
 	}
 
 	if err := <-done; err != nil {
-		log.Fatal(err)
+		return "", err
 	}
 
 	// Select INBOX
 	mbox, err := c.Select("INBOX", false)
 	if err != nil {
-		log.Fatal(err)
+		return "", err
 	}
 
 	// Get the last message
 	if mbox.Messages == 0 {
-		log.Fatal("No message in mailbox")
+		return "", fmt.Errorf("No messages")
 	}
 	seqSet := new(imap.SeqSet)
 	seqSet.AddNum(mbox.Messages)
@@ -158,18 +158,19 @@ func getOTPfromEmail(email string, password string) string {
 
 	msg := <-messages
 	if msg == nil {
-		log.Fatal("Server didn't returned message")
+		return "", fmt.Errorf("Server didn't returned message")
+		// log.Fatal("Server didn't returned message")
 	}
 
 	r := msg.GetBody(&section)
 	if r == nil {
-		log.Fatal("Server didn't returned message body")
+		return "", fmt.Errorf("Server didn't returned message body")
 	}
 
 	// Create a new mail reader
 	mr, err := mail.CreateReader(r)
 	if err != nil {
-		log.Fatal(err)
+		return "", err
 	}
 
 	// Print some info about the message
@@ -193,7 +194,7 @@ func getOTPfromEmail(email string, password string) string {
 		if err == io.EOF {
 			break
 		} else if err != nil {
-			log.Fatal(err)
+			return "", err
 		}
 
 		switch h := p.Header.(type) {
@@ -201,13 +202,13 @@ func getOTPfromEmail(email string, password string) string {
 			// This is the message's text (can be plain-text or HTML)
 			b, _ := ioutil.ReadAll(p.Body)
 			log.Println("Got text: ", string(b))
-			return string(b)
+			return string(b), nil
 		case *mail.AttachmentHeader:
 			// This is an attachment
 			filename, _ := h.Filename()
-			log.Println("Got attachment: %v", filename)
+			log.Println("Got attachment: ", filename)
 		}
 	}
 
-	return ""
+	return "", nil
 }

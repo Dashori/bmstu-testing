@@ -16,8 +16,8 @@ func main() {
 		fmt.Println(err)
 	}
 
-	err = client_controller.ClientTestOTP(client)
-	if err != nil {
-		fmt.Println(err)
-	}
+	// err = client_controller.ClientTestOTP(client)
+	// if err != nil {
+	// 	fmt.Println(err)
+	// }
 }
