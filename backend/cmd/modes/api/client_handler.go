@@ -4,27 +4,42 @@ import (
 	token "backend/cmd/modes/api/utils"
 	"backend/internal/models"
 	servicesErrors "backend/internal/pkg/errors/servicesErrors"
-
+	"go.opentelemetry.io/otel"
 	"time"
 
 	"github.com/gin-gonic/gin"
 )
 
+var tracer = otel.Tracer("Client")
+
 func (t *services) createClient(c *gin.Context) {
+
+	ctx := c.Request.Context()
+
+	ctx1, span := tracer.Start(ctx, "create client")
+	defer span.End()
+
 	var client *models.Client
+
+	ctx2, span2 := tracer.Start(ctx1, "bind json")
 	err := c.ShouldBindJSON(&client)
+	span2.End()
 
 	if err != nil {
 		jsonInternalServerErrorResponse(c, err)
 		return
 	}
 
+	ctx3, span3 := tracer.Start(ctx2, "create")
 	res, err := t.Services.ClientService.Create(client, client.Password)
-	if !errorHandler(c, err) { //!= true
+	span3.End()
+	if !errorHandler(c, err) {
 		return
 	}
 
+	_, span4 := tracer.Start(ctx3, "generate token")
 	token, err := token.GenerateToken(res.ClientId, "client")
+	span4.End()
 	if err != nil {
 		jsonInternalServerErrorResponse(c, err)
 		return
@@ -34,6 +49,11 @@ func (t *services) createClient(c *gin.Context) {
 }
 
 func (t *services) createClientOTP(c *gin.Context) {
+	ctx := c.Request.Context()
+
+	_, span := tracer.Start(ctx, "create client otp")
+	defer span.End()
+
 	var client *models.Client
 	err := c.ShouldBindJSON(&client)
 
@@ -60,6 +80,10 @@ func (t *services) createClientOTP(c *gin.Context) {
 }
 
 func (t *services) loginClient(c *gin.Context) {
+	ctx := c.Request.Context()
+
+	_, span := tracer.Start(ctx, "login client")
+	defer span.End()
 
 	var client *models.Client
 	err := c.ShouldBindJSON(&client)
@@ -85,6 +109,10 @@ func (t *services) loginClient(c *gin.Context) {
 }
 
 func (t *services) infoClient(c *gin.Context) {
+	ctx := c.Request.Context()
+
+	_, span := tracer.Start(ctx, "get client info")
+	defer span.End()
 
 	user_id, role, err := token.ExtractTokenIdAndRole(c)
 	if !errorHandlerClientAuth(c, err, role) { //!= true
