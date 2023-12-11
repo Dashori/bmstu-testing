@@ -48,8 +48,8 @@ e2e-test:
     - cd e2e
     - go run main.go
     - docker-compose down
-  needs:
-    - int-tests
+  # needs:
+  #   - int-tests
   tags:
     - shell
 
@@ -65,8 +65,8 @@ e2e-test-2fa:
     - cd e2e/client_controller
     - go test
     - docker-compose down
-  needs:
-    - e2e-test
+  # needs:
+  #   - e2e-test
   tags:
     - shell
 
