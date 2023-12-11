@@ -5,6 +5,7 @@ import (
 	models "consoleApp/models"
 	"encoding/json"
 	basicErrors "errors"
+	"fmt"
 	"io"
 	"net/http"
 )
@@ -44,6 +45,7 @@ func ParseClientBody(response *http.Response) (models.Client, error) {
 
 	var result models.Client
 	if err := json.Unmarshal(body, &result); err != nil {
+		fmt.Println("***** ", err)
 		return models.Client{}, errors.ErrorParseBody
 	}
 

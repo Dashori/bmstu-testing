@@ -14,6 +14,7 @@ const adress = "localhost"
 func DoRequest(client *http.Client, request *http.Request) (*http.Response, error) {
 	response, err := client.Do(request)
 	if err != nil {
+		fmt.Println("!!!!" , err)
 		return nil, errors.ErrorExecuteRequest
 	}
 
