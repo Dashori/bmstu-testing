@@ -13,6 +13,7 @@ import (
 	"gorm.io/gorm"
 	"math/rand"
 	"os"
+    "path/filepath"
 	"strings"
 	"testing"
 	"time"
@@ -188,7 +189,14 @@ func SetupTestDatabaseGorm() (testcontainers.Container, *gorm.DB, error) {
 		return nil, nil, fmt.Errorf("gorm open: %w", err)
 	}
 
-	text, err := os.ReadFile("../../../../db/postgreSQL/init/init.sql")
+	ex, err := os.Executable()
+    if err != nil {
+        panic(err)
+    }
+    exPath := filepath.Dir(ex)
+    fmt.Println(exPath)
+
+	text, err := os.ReadFile("db/postgreSQL/init/init.sql")
 	if err != nil {
 		return nil, nil, fmt.Errorf("read file: %w", err)
 	}
@@ -234,7 +242,14 @@ func SetupTestDatabaseSqlx() (testcontainers.Container, *sql.DB) {
 	}
 	db.SetMaxOpenConns(10)
 
-	text, err := os.ReadFile("../../../../db/postgreSQL/init/init.sql")
+	ex, err := os.Executable()
+    if err != nil {
+        panic(err)
+    }
+    exPath := filepath.Dir(ex)
+    fmt.Println(exPath)
+
+	text, err := os.ReadFile("db/postgreSQL/init/init.sql")
 	if err != nil {
 		return dbContainer, nil
 	}

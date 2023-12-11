@@ -28,7 +28,7 @@ services:
   backend:
     build:
       context: ./backend
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile3
     image: test-backend
     container_name: test-backend
     command: go run ./cmd/main.go
@@ -37,6 +37,7 @@ services:
       TC_HOST: "host.docker.internal"
       TZ: "Europe/Moscow"
     volumes:
+     - ./backend:/app
      - /var/run/docker.sock://var/run/docker.sock
     ports: 
       - 8080:8080
