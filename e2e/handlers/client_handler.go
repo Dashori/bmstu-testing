@@ -9,7 +9,7 @@ import (
 )
 
 const port = "8080"
-const adress = "localhost"
+const address = "docker"
 
 func DoRequest(client *http.Client, request *http.Request) (*http.Response, error) {
 	response, err := client.Do(request)
@@ -27,7 +27,7 @@ func DoRequest(client *http.Client, request *http.Request) (*http.Response, erro
 
 func LoginClient(client *http.Client, newClient *models.Client) (*http.Response, error) {
 
-	url := "http://" + adress + ":" + port + "/api/client/login"
+	url := "http://" + address + ":" + port + "/api/client/login"
 	params := fmt.Sprintf("{\"Login\": \"%s\", \"Password\": \"%s\"}", newClient.Login, newClient.Password)
 	var jsonStr = []byte(params)
 
@@ -45,7 +45,7 @@ func LoginClient(client *http.Client, newClient *models.Client) (*http.Response,
 
 func CreateClient(client *http.Client, newClient *models.Client) (*http.Response, error) {
 
-	url := "http://" + adress + ":" + port + "/api/client/create"
+	url := "http://" + address + ":" + port + "/api/client/create"
 	params := fmt.Sprintf("{\"Login\": \"%s\", \"Password\": \"%s\"}", newClient.Login, newClient.Password)
 	var jsonStr = []byte(params)
 
@@ -63,7 +63,7 @@ func CreateClient(client *http.Client, newClient *models.Client) (*http.Response
 
 func CreateClientOTP(client *http.Client, newClient *models.Client) (*http.Response, error) {
 
-	url := "http://" + adress + ":" + port + "/api/client/createOTP"
+	url := "http://" + address + ":" + port + "/api/client/createOTP"
 	params := fmt.Sprintf("{\"Login\": \"%s\", \"Password\": \"%s\", \"Email\": \"%s\", \"OTP\": \"%s\"}", newClient.Login, newClient.Password,
 		newClient.Email, newClient.OTP)
 
@@ -82,7 +82,7 @@ func CreateClientOTP(client *http.Client, newClient *models.Client) (*http.Respo
 }
 
 func GetClientPets(client *http.Client, token string) (*http.Response, error) {
-	url := "http://" + adress + ":" + port + "/api/client/pets"
+	url := "http://" + address + ":" + port + "/api/client/pets"
 
 	request, err := http.NewRequest("GET", url, nil)
 	if err != nil {
@@ -98,7 +98,7 @@ func GetClientPets(client *http.Client, token string) (*http.Response, error) {
 }
 
 func GetClientInfo(client *http.Client, token string) (*http.Response, error) {
-	url := "http://" + adress + ":" + port + "/api/client/info"
+	url := "http://" + address + ":" + port + "/api/client/info"
 
 	request, err := http.NewRequest("GET", url, nil)
 	if err != nil {
@@ -115,7 +115,7 @@ func GetClientInfo(client *http.Client, token string) (*http.Response, error) {
 
 func AddPet(client *http.Client, token string, pet models.Pet) (*http.Response, error) {
 
-	url := "http://" + adress + ":" + port + "/api/client/pet"
+	url := "http://" + address + ":" + port + "/api/client/pet"
 	params := fmt.Sprintf("{\"Name\": \"%s\", \"Type\": \"%s\", \"Age\": %d,\"Health\": %d}",
 		pet.Name, pet.Type, pet.Age, pet.Health)
 	var jsonStr = []byte(params)
