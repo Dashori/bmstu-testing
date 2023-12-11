@@ -47,7 +47,7 @@ e2e-test:
     - docker ps
     - cd e2e
     - go run main.go
-  after-script:
+  after_script:
     - docker-compose down
   # needs:
   #   - int-tests
@@ -65,7 +65,7 @@ e2e-test-2fa:
     - docker ps
     - cd e2e/client_controller
     - go test
-  after-script:
+  after_script:
     - docker-compose down
   # needs:
   #   - e2e-test
