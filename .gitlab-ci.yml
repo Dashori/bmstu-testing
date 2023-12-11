@@ -62,6 +62,8 @@ e2e-test-2fa:
     - docker-compose up -d
     - docker ps
     - cd e2e/client_controller
+    - export VAULT_ADDR='http://127.0.0.1:8200'
+    - export PASSWORD_TO="$(vault kv get -field=password secret/emailTo)"
     - go test
     - docker-compose down
   needs:
