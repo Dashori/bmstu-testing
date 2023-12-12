@@ -6,6 +6,8 @@ import (
 	benchmark "backend/internal/repository/postgres_repo/benchmark"
 	"fmt"
 	"github.com/gin-gonic/gin"
+	// "github.com/prometheus/client_golang/prometheus"
+	// "github.com/prometheus/client_golang/prometheus/promauto"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"go.opentelemetry.io/contrib/instrumentation/github.com/gin-gonic/gin/otelgin"
 	"go.opentelemetry.io/otel"
@@ -39,6 +41,7 @@ func SetupServer(a *registry.App) *gin.Engine {
 	router := gin.Default()
 
 	router.GET("/metrics", prometheusHandler())
+
 	router.GET("/bench", func(ctx *gin.Context) {
 		var res [][]string
 		for i := 0; i < 10; i++ {

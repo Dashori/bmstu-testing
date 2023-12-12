@@ -24,7 +24,7 @@ func main() {
 		}
 	}()
 
-	req, err := http.NewRequest(http.MethodGet, "http://jaeger:16686/api/traces?service=backend", nil)
+	req, err := http.NewRequest(http.MethodGet, "http://localhost:16686/api/traces?service=backend", nil)
 	if err != nil {
 		panic(err)
 	}

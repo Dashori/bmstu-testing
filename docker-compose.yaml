@@ -28,7 +28,7 @@ services:
   backend:
     build:
       context: ./backend
-      dockerfile: Dockerfile2
+      dockerfile: Dockerfile3
     image: test-backend
     container_name: test-backend
     command: go run ./cmd/main.go
