@@ -28,7 +28,7 @@ services:
   backend:
     build:
       context: ./backend
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile2
     image: test-backend
     container_name: test-backend
     command: go run ./cmd/main.go
@@ -60,9 +60,6 @@ services:
     restart: unless-stopped
     environment:
       TZ: "Europe/Moscow"
-    depends_on:
-      backend:
-        condition: service_started
     networks:
       - mynetwork
   
@@ -80,12 +77,8 @@ services:
     environment:
       TZ: "Europe/Moscow"
     depends_on:
-      backend:
-        condition: service_started
       prometheus:
         condition: service_started
-      postgres:
-        condition: service_healthy 
     networks:
       - mynetwork
 
