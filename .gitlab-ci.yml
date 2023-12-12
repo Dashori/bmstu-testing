@@ -49,6 +49,9 @@ e2e-test:
     - docker ps
     - cd e2e
     - go run main.go
+  artifacts:
+    paths:
+      - e2e/trace.json
   # needs:
   #   - int-tests
   tags:
@@ -61,7 +64,6 @@ e2e-test-2fa:
     - export VAULT_ADDR='http://127.0.0.1:8200'
     - export PASSWORD_FROM="$(vault kv get -field=password secret/emailFrom)"
     - export PASSWORD_TO="$(vault kv get -field=password secret/emailTo)"
-    - docker-compose down
     - docker-compose up -d
     - sleep 60
     - docker ps
