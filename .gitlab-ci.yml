@@ -49,9 +49,11 @@ e2e-test:
     - docker ps
     - cd e2e
     - go run main.go
+    - curl -X GET "http://localhost:16686/api/traces?service=backend" > trace2.json
   artifacts:
     paths:
       - e2e/trace.json
+      - e2e/trace2.json
   # needs:
   #   - int-tests
   tags:
