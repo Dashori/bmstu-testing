@@ -34,6 +34,10 @@ func jsonClientCreateResponse(c *gin.Context, client *models.Client, token strin
 	c.JSON(http.StatusCreated, gin.H{"ClientId": client.ClientId, "Login": client.Login, "Token": token})
 }
 
+func jsonClientCreateOTP(c *gin.Context) {
+	c.JSON(http.StatusOK, gin.H{"info:": "Send key to email, please use it in the next request!"})
+}
+
 func jsonClientLoginOkResponse(c *gin.Context, client *models.Client, token string) {
 	c.JSON(http.StatusOK, gin.H{"ClientId": client.ClientId, "Login": client.Login, "Token": token})
 }

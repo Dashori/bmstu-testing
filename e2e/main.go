@@ -1,7 +1,7 @@
 package main
 
 import (
-	menu "consoleApp/menu_controller"
+	"consoleApp/client_controller"
 	"fmt"
 	"net/http"
 )
@@ -9,7 +9,7 @@ import (
 func main() {
 	client := &http.Client{}
 
-	err := menu.RunMenu(client)
+	err := client_controller.ClientTest(client)
 	if err != nil {
 		fmt.Println(err)
 	}

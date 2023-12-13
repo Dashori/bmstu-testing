@@ -15,14 +15,14 @@ stages:
 unit-tests:
   stage: test
   script:
-    - touch backend/internal/services/implementation/testRepos.log 
+    - touch backend/internal/services/implementation/testService.log
     - touch backend/internal/repository/postgres_repo/testRepos.log
     - cd backend/internal/services/implementation
-    - go test pet_test.go client_test.go doctor_test.go record_test.go pet.go record.go client.go doctor.go setup.go -gcflags=all=-l -tags=unit -cover -coverprofile=serviceTest.out -json -v > testService.log
+    - go test pet_test.go client_test.go doctor_test.go record_test.go pet.go record.go client.go doctor.go setup.go -gcflags=all=-l -tags=unit -cover -v 
+    - go test pet_test.go client_test.go doctor_test.go record_test.go pet.go record.go client.go doctor.go setup.go -gcflags=all=-l -tags=unit -cover -json -v > testService.log
     - cd -
     - cd backend/internal/repository/postgres_repo
-    - go test -gcflags=all=-l -tags=unit -cover -coverprofile=serviceTest.out -json ./... -v > testRepos.log   
-    - echo "all is ok"
+    - go test -gcflags=all=-l -tags=unit -cover -json ./... -v > testRepos.log   
   artifacts:
     paths:
       - backend/internal/services/implementation/testService.log
@@ -34,39 +34,64 @@ int-tests:
     - touch backend/internal/services/implementation/testIntegration.log
     - cd backend/internal/services/implementation 
     - go test petPostgres_test.go recordPostgres_test.go pet.go record.go setup.go  -gcflags=all=-l -tags=integration -cover -coverprofile=serviceIntegration.out -json -v > testIntegration.log  
-    - echo "all is ok"
-  dependencies:
+  needs:
     - unit-tests
   artifacts:
     paths:
       - backend/internal/services/implementation/testIntegration.log
 
-e2e-tests:
+e2e-test:
   stage: test
   script:
+    - docker-compose down
     - docker-compose up -d
+    - sleep 60
     - docker ps
     - cd e2e
     - go run main.go
-    - docker-compose down
-  dependencies:
+    - sleep 10
+    - curl -X GET "http://localhost:16686/api/traces?service=backend" > trace.json
+  artifacts:
+    paths:
+      - e2e/trace.json
+  needs:
     - int-tests
+  tags:
+    - shell
+
+e2e-test-2fa:
+  stage: test
+  script:
+    - docker-compose down
+    - export VAULT_ADDR='http://127.0.0.1:8200'
+    - export PASSWORD_FROM="$(vault kv get -field=password secret/emailFrom)"
+    - export PASSWORD_TO="$(vault kv get -field=password secret/emailTo)"
+    - docker-compose up -d
+    - sleep 60
+    - docker ps
+    - cd e2e/client_controller
+    - go test
+    - docker-compose down
+  needs:
+    - e2e-test
+  tags:
+    - shell
 
 report:
-    stage: report
-    needs:
-      - unit-tests
-      - int-tests
-    script:
-      - go install github.com/polnaya-katuxa/test-report@latest
-      - mv backend/internal/services/implementation/testService.log testService.log
-      - mv backend/internal/repository/postgres_repo/testRepos.log testRepos.log
-      - mv backend/internal/services/implementation/testIntegration.log testIntegration.log
-      - touch test.log
-      - cat testService.log >> test.log
-      - cat testRepos.log >> test.log
-      - cat testIntegration.log >> test.log
-      - test-report -f ./test.log -o .
-    artifacts:
-      paths:
-        - report.html
+  stage: report
+  script:
+    - go install github.com/polnaya-katuxa/test-report@latest
+    - mv backend/internal/services/implementation/testService.log testService.log || true
+    - mv backend/internal/repository/postgres_repo/testRepos.log testRepos.log || true
+    - mv backend/internal/services/implementation/testIntegration.log testIntegration.log || true
+    - touch test.log
+    - cat testService.log >> test.log || true
+    - cat testRepos.log >> test.log || true
+    - cat testIntegration.log >> test.log || true
+    - test-report -f ./test.log -o .
+  dependencies:
+    - unit-tests
+    - int-tests
+  artifacts:
+    paths:
+      - report.html

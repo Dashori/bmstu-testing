@@ -5,6 +5,7 @@ import (
 	models "consoleApp/models"
 	"encoding/json"
 	basicErrors "errors"
+	"fmt"
 	"io"
 	"net/http"
 )
@@ -44,6 +45,7 @@ func ParseClientBody(response *http.Response) (models.Client, error) {
 
 	var result models.Client
 	if err := json.Unmarshal(body, &result); err != nil {
+		fmt.Println("***** ", err)
 		return models.Client{}, errors.ErrorParseBody
 	}
 
@@ -59,34 +61,6 @@ func ParsePetsBody(response *http.Response) (models.Pets, error) {
 	var result models.Pets
 	if err := json.Unmarshal(body, &result); err != nil {
 		return models.Pets{}, errors.ErrorParseBody
-	}
-
-	return result, nil
-}
-
-func ParseDoctorBody(response *http.Response) (models.Doctor, error) {
-	body, err := io.ReadAll(response.Body)
-	if err != nil {
-		return models.Doctor{}, errors.ErrorParseBody
-	}
-
-	var result models.Doctor
-	if err := json.Unmarshal(body, &result); err != nil {
-		return models.Doctor{}, errors.ErrorParseBody
-	}
-
-	return result, nil
-}
-
-func ParseDoctorsBody(response *http.Response) (models.Doctors, error) {
-	body, err := io.ReadAll(response.Body)
-	if err != nil {
-		return models.Doctors{}, errors.ErrorParseBody
-	}
-
-	var result models.Doctors
-	if err := json.Unmarshal(body, &result); err != nil {
-		return models.Doctors{}, errors.ErrorParseBody
 	}
 
 	return result, nil

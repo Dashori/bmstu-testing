@@ -4,19 +4,6 @@ WORKDIR /app
 
 COPY . .
 
-# COPY go.mod .
-# COPY go.sum .
-# COPY ./cmd/benchmark .
-# COPY ./internal/repository .
-
 RUN go mod download 
-# && \
-#     go mod download github.com/gin-gonic/gin && \
-#     go mod download github.com/pkg/errors && \
-#     go mod download github.com/prometheus/client_golang
-
-
-# RUN go build -o ./build/cmd/main ./main.go
-# RUN go build -o ./build/cmd/main ./cmd/benchmark/main.go
 
 ENTRYPOINT cd cmd/benchmark && go run main.go

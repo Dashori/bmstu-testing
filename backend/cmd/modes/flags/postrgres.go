@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"github.com/charmbracelet/log"
 	_ "github.com/jackc/pgx/stdlib"
+	"go.nhat.io/otelsql"
+	semconv "go.opentelemetry.io/otel/semconv/v1.20.0"
 )
 
 type PostgresFlags struct {
@@ -23,7 +25,20 @@ func (p *PostgresFlags) InitDB(logger *log.Logger) (*sql.DB, error) {
 		p.User, p.DBName, p.Password,
 		p.Host, p.Port)
 
-	db, err := sql.Open("pgx", dsnPGConn)
+	driverName, err := otelsql.Register("pgx",
+		otelsql.AllowRoot(),
+		otelsql.TraceQueryWithoutArgs(),
+		otelsql.TraceRowsClose(),
+		otelsql.TraceRowsAffected(),
+		otelsql.WithDatabaseName("postgres"),                         // Optional.
+		otelsql.WithSystem(semconv.ServiceNameKey.String("backend")), // Optional.
+	)
+	if err != nil {
+		fmt.Println(err)
+		return nil, err
+	}
+
+	db, err := sql.Open(driverName, dsnPGConn)
 	if err != nil {
 		logger.Fatal("POSTGRES! Error in method open")
 		return nil, err
@@ -36,6 +51,10 @@ func (p *PostgresFlags) InitDB(logger *log.Logger) (*sql.DB, error) {
 	}
 
 	db.SetMaxOpenConns(10)
+
+	if err := otelsql.RecordStats(db); err != nil {
+		return nil, err
+	}
 
 	logger.Info("POSTGRES! Successfully init postgreSQL")
 	return db, nil

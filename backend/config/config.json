@@ -1,6 +1,6 @@
 {
     "postgres": {
-      "host": "localhost",
+      "host": "postgres",
       "user": "dashori",
       "password": "parasha",
       "port": "5432",
@@ -8,7 +8,7 @@
     },
 
     "mode" : "api",
-    "loglevel": "info",
+    "loglevel": "debug",
     "logfile" : "info.log",
     "port": ":8080"
 }

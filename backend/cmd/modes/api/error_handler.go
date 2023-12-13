@@ -38,10 +38,18 @@ func errorHandler(c *gin.Context, err error) bool {
 		err == servicesErrors.ClientAlreadyExists ||
 		err == servicesErrors.ErrorHash ||
 		err == servicesErrors.InvalidPassword ||
-		err == servicesErrors.ErrorWrongNewShedule {
+		err == servicesErrors.ErrorWrongNewShedule ||
+		err == servicesErrors.ErrorNoEmail ||
+		err == servicesErrors.ErrorBadOTP ||
+		err == servicesErrors.ErrorSendEmail {
 
 		jsonBadRequestResponse(c, err)
 		return false
+	}
+
+	if err == servicesErrors.ErrorNoOTP {
+		jsonClientCreateOTP(c)
+		return true
 	}
 
 	return true

@@ -27,5 +27,10 @@ var (
 	ErrorHash             = errors.New("Service error! Ошибка получения хэша для пароля!")
 	InvalidPassword       = errors.New("Service error! Неверный пароль!")
 
+	ErrorNoEmail   = errors.New("Service error! Нет почты!")
+	ErrorNoOTP     = errors.New("Service error! Нет токена!")
+	ErrorBadOTP    = errors.New("Service error! Неверный токен!")
+	ErrorSendEmail = errors.New("Service error! Ошибка при отправке письма!")
+
 	ErrorWrongNewShedule = errors.New("Service error! Неверное время для расписания!")
 )
