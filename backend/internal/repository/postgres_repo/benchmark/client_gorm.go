@@ -13,6 +13,7 @@ import (
 	"gorm.io/gorm"
 	"math/rand"
 	"os"
+	"path/filepath"
 	"strings"
 	"testing"
 	"time"
@@ -188,7 +189,14 @@ func SetupTestDatabaseGorm() (testcontainers.Container, *gorm.DB, error) {
 		return nil, nil, fmt.Errorf("gorm open: %w", err)
 	}
 
-	text, err := os.ReadFile("../../db/postgreSQL/init/init.sql")
+	ex, err := os.Executable()
+	if err != nil {
+		panic(err)
+	}
+	exPath := filepath.Dir(ex)
+	fmt.Println(exPath)
+
+	text, err := os.ReadFile("db/postgreSQL/init/init.sql")
 	if err != nil {
 		return nil, nil, fmt.Errorf("read file: %w", err)
 	}
@@ -234,8 +242,14 @@ func SetupTestDatabaseSqlx() (testcontainers.Container, *sql.DB) {
 	}
 	db.SetMaxOpenConns(10)
 
-	// text, err := os.ReadFile("db/postgreSQL/init/init.sql")
-	text, err := os.ReadFile("../../db/postgreSQL/init/init.sql")
+	ex, err := os.Executable()
+	if err != nil {
+		panic(err)
+	}
+	exPath := filepath.Dir(ex)
+	fmt.Println(exPath)
+
+	text, err := os.ReadFile("db/postgreSQL/init/init.sql")
 	if err != nil {
 		return dbContainer, nil
 	}
@@ -247,6 +261,3 @@ func SetupTestDatabaseSqlx() (testcontainers.Container, *sql.DB) {
 
 	return dbContainer, db
 }
-
-// [gorm.AddUser -- runs   200 times       CPU: 5091739 ns/op      RAM:    69 allocs/op  5143 bytes/op
-// [gorm.AddUser -- runs   200 times       CPU: 5216902 ns/op      RAM:    68 allocs/op  4868 bytes/op

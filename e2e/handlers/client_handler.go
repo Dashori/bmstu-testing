@@ -8,26 +8,26 @@ import (
 	"net/http"
 )
 
-func SetRole(client *http.Client, role string) (*http.Response, error) {
-	url := "http://" + adress + ":" + port + "/api/setRole"
-	params := fmt.Sprintf("{\"Role\": \"%s\"}", role)
-	var jsonStr = []byte(params)
+const port = "8080"
+const address = "localhost"
 
-	request, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonStr))
+func DoRequest(client *http.Client, request *http.Request) (*http.Response, error) {
+	response, err := client.Do(request)
 	if err != nil {
-		return nil, errors.ErrorNewRequest
+		fmt.Println("!!!!", err)
+		return nil, errors.ErrorExecuteRequest
 	}
 
-	request.Header.Set("Content-Type", "application/json")
+	if response.StatusCode < 200 || response.StatusCode >= 300 {
+		return response, errors.ErrorResponseStatus
+	}
 
-	response, err := DoRequest(client, request)
-
-	return response, err
+	return response, nil
 }
 
 func LoginClient(client *http.Client, newClient *models.Client) (*http.Response, error) {
 
-	url := "http://" + adress + ":" + port + "/api/client/login"
+	url := "http://" + address + ":" + port + "/api/client/login"
 	params := fmt.Sprintf("{\"Login\": \"%s\", \"Password\": \"%s\"}", newClient.Login, newClient.Password)
 	var jsonStr = []byte(params)
 
@@ -45,7 +45,7 @@ func LoginClient(client *http.Client, newClient *models.Client) (*http.Response,
 
 func CreateClient(client *http.Client, newClient *models.Client) (*http.Response, error) {
 
-	url := "http://" + adress + ":" + port + "/api/client/create"
+	url := "http://" + address + ":" + port + "/api/client/create"
 	params := fmt.Sprintf("{\"Login\": \"%s\", \"Password\": \"%s\"}", newClient.Login, newClient.Password)
 	var jsonStr = []byte(params)
 
@@ -61,8 +61,28 @@ func CreateClient(client *http.Client, newClient *models.Client) (*http.Response
 	return response, err
 }
 
+func CreateClientOTP(client *http.Client, newClient *models.Client) (*http.Response, error) {
+
+	url := "http://" + address + ":" + port + "/api/client/createOTP"
+	params := fmt.Sprintf("{\"Login\": \"%s\", \"Password\": \"%s\", \"Email\": \"%s\", \"OTP\": \"%s\"}", newClient.Login, newClient.Password,
+		newClient.Email, newClient.OTP)
+
+	var jsonStr = []byte(params)
+
+	request, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonStr))
+	if err != nil {
+		return nil, errors.ErrorNewRequest
+	}
+
+	request.Header.Set("Content-Type", "application/json")
+
+	response, err := DoRequest(client, request)
+
+	return response, err
+}
+
 func GetClientPets(client *http.Client, token string) (*http.Response, error) {
-	url := "http://" + adress + ":" + port + "/api/client/pets"
+	url := "http://" + address + ":" + port + "/api/client/pets"
 
 	request, err := http.NewRequest("GET", url, nil)
 	if err != nil {
@@ -78,23 +98,7 @@ func GetClientPets(client *http.Client, token string) (*http.Response, error) {
 }
 
 func GetClientInfo(client *http.Client, token string) (*http.Response, error) {
-	url := "http://" + adress + ":" + port + "/api/client/info"
-
-	request, err := http.NewRequest("GET", url, nil)
-	if err != nil {
-		return nil, errors.ErrorNewRequest
-	}
-
-	request.Header.Set("Content-Type", "application/json")
-	request.Header.Set("Authorization", "Bearer "+token)
-
-	response, err := DoRequest(client, request)
-
-	return response, err
-}
-
-func GetClientRecords(client *http.Client, token string) (*http.Response, error) {
-	url := "http://" + adress + ":" + port + "/api/client/records"
+	url := "http://" + address + ":" + port + "/api/client/info"
 
 	request, err := http.NewRequest("GET", url, nil)
 	if err != nil {
@@ -111,48 +115,9 @@ func GetClientRecords(client *http.Client, token string) (*http.Response, error)
 
 func AddPet(client *http.Client, token string, pet models.Pet) (*http.Response, error) {
 
-	url := "http://" + adress + ":" + port + "/api/client/pet"
+	url := "http://" + address + ":" + port + "/api/client/pet"
 	params := fmt.Sprintf("{\"Name\": \"%s\", \"Type\": \"%s\", \"Age\": %d,\"Health\": %d}",
 		pet.Name, pet.Type, pet.Age, pet.Health)
-	var jsonStr = []byte(params)
-
-	request, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonStr))
-	if err != nil {
-		return nil, errors.ErrorNewRequest
-	}
-
-	request.Header.Set("Content-Type", "application/json")
-	request.Header.Set("Authorization", "Bearer "+token)
-
-	response, err := DoRequest(client, request)
-
-	return response, err
-}
-
-func DeletePet(client *http.Client, token string, id uint64) (*http.Response, error) {
-
-	url := "http://" + adress + ":" + port + "/api/client/pet"
-	params := fmt.Sprintf("{\"PetId\": %d}", id)
-	var jsonStr = []byte(params)
-
-	request, err := http.NewRequest("DELETE", url, bytes.NewBuffer(jsonStr))
-	if err != nil {
-		return nil, errors.ErrorNewRequest
-	}
-
-	request.Header.Set("Content-Type", "application/json")
-	request.Header.Set("Authorization", "Bearer "+token)
-
-	response, err := DoRequest(client, request)
-
-	return response, err
-}
-
-func AddRecord(client *http.Client, token string, record models.Record) (*http.Response, error) {
-
-	url := "http://" + adress + ":" + port + "/api/client/record"
-	params := fmt.Sprintf("{\"PetId\": %d, \"DoctorId\": %d, \"Year\": %d,\"Month\": %d,\"Day\": %d, \"StartTime\": %d}",
-		record.PetId, record.DoctorId, record.Year, record.Month, record.Day, record.DatetimeStart)
 	var jsonStr = []byte(params)
 
 	request, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonStr))

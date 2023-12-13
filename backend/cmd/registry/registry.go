@@ -71,7 +71,6 @@ func (a *App) Init() error {
 
 	a.Repositories = a.initRepositories(fields)
 	a.Services = a.initServices(a.Repositories)
-
 	return nil
 }
 

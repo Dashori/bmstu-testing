@@ -1,24 +1,61 @@
 package api
 
 import (
-	registry "backend/cmd/registry"
-
 	"backend/cmd/modes/api/middlewares"
+	registry "backend/cmd/registry"
+	benchmark "backend/internal/repository/postgres_repo/benchmark"
 	"fmt"
 	"github.com/gin-gonic/gin"
+	// "github.com/prometheus/client_golang/prometheus"
+	// "github.com/prometheus/client_golang/prometheus/promauto"
+	"github.com/prometheus/client_golang/prometheus/promhttp"
+	"go.opentelemetry.io/contrib/instrumentation/github.com/gin-gonic/gin/otelgin"
+	"go.opentelemetry.io/otel"
+	"go.opentelemetry.io/otel/propagation"
+	"net/http"
 )
 
 type services struct {
 	Services *registry.AppServiceFields
 }
 
+func prometheusHandler() gin.HandlerFunc {
+	h := promhttp.Handler()
+
+	return func(c *gin.Context) {
+		h.ServeHTTP(c.Writer, c.Request)
+	}
+}
+
 func SetupServer(a *registry.App) *gin.Engine {
+
+	tp, tpErr := JaegerTraceProvider()
+	if tpErr != nil {
+		fmt.Println(tpErr)
+		return nil
+	}
+	otel.SetTracerProvider(tp)
+	otel.SetTextMapPropagator(propagation.NewCompositeTextMapPropagator(propagation.TraceContext{}, propagation.Baggage{}))
 	t := services{a.Services}
 
 	router := gin.Default()
 
+	router.GET("/metrics", prometheusHandler())
+
+	router.GET("/bench", func(ctx *gin.Context) {
+		var res [][]string
+		for i := 0; i < 10; i++ {
+			fmt.Println("ITERATION ", i)
+			res2 := benchmark.ClientBench()
+			res = append(res, res2)
+		}
+
+		ctx.JSON(http.StatusOK, res)
+	})
+
 	api := router.Group("/api")
 	{
+		api.Use(otelgin.Middleware("backend"))
 		api.POST("/setRole", t.setRole)
 
 		api.GET("/doctors", t.getAllDoctors)
@@ -32,6 +69,7 @@ func SetupServer(a *registry.App) *gin.Engine {
 		doctor.PATCH("/shedule", t.doctorShedule)
 
 		api.POST("/client/create", t.createClient)
+		api.POST("/client/createOTP", t.createClientOTP)
 		api.POST("/client/login", t.loginClient)
 
 		client := api.Group("/client")
